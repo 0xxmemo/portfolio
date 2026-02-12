@@ -117,11 +117,7 @@ export function Experience({ isActive }: { isActive?: boolean }) {
           >
             {experiences.map((exp, i) => (
               <SwiperSlide key={i}>
-                <div className="relative rounded-2xl h-[400px] shadow-lg shadow-black/20 overflow-hidden">
-                  {/* Blur background layer — isolated from 3D transforms */}
-                  <div className="absolute inset-0 bg-white/[0.12] border border-white/[0.18] rounded-2xl [backdrop-filter:blur(24px)] [-webkit-backdrop-filter:blur(24px)] [transform:translateZ(0)]" />
-                  {/* Content */}
-                  <div className="relative z-10 p-6 h-full flex flex-col">
+                <div className="bg-[#1a1a2e]/90 border border-white/[0.15] rounded-2xl p-6 h-[400px] flex flex-col shadow-lg shadow-black/30">
                   {/* Logo */}
                   <div className="mb-4">
                     {exp.logo ? (
@@ -172,7 +168,6 @@ export function Experience({ isActive }: { isActive?: boolean }) {
                         {tag}
                       </span>
                     ))}
-                  </div>
                   </div>
                 </div>
               </SwiperSlide>
