@@ -1,6 +1,12 @@
 import { useEffect, useRef } from "react";
-import { animate, stagger } from "animejs";
+import { animate } from "animejs";
+import { Swiper, SwiperSlide } from 'swiper/react';
+import { EffectCards, Pagination } from 'swiper/modules';
 import { MOTION } from "../lib/motion";
+
+import 'swiper/css';
+import 'swiper/css/effect-cards';
+import 'swiper/css/pagination';
 
 interface Experience {
   title: string;
@@ -47,6 +53,18 @@ const experiences: Experience[] = [
   },
 ];
 
+// Helper to get first letter color
+function getColorForLetter(letter: string) {
+  const colors = [
+    "bg-purple-500/20 text-purple-400 border-purple-500/30",
+    "bg-pink-500/20 text-pink-400 border-pink-500/30",
+    "bg-violet-500/20 text-violet-400 border-violet-500/30",
+    "bg-fuchsia-500/20 text-fuchsia-400 border-fuchsia-500/30",
+  ];
+  const index = letter.charCodeAt(0) % colors.length;
+  return colors[index];
+}
+
 export function Experience({ isActive }: { isActive?: boolean }) {
   const sectionRef = useRef<HTMLElement>(null);
   const hasAnimated = useRef(false);
@@ -68,22 +86,12 @@ export function Experience({ isActive }: { isActive?: boolean }) {
       ease: MOTION.ease,
     });
 
-    // Timeline items: stagger fade + slideY + scale
-    animate(el.querySelectorAll(".timeline-item"), {
+    // Swiper container: fade + slideY
+    animate(el.querySelector(".swiper-container")!, {
       opacity: [0, 1],
       translateY: [MOTION.slideY.item, 0],
-      scale: [MOTION.scale.initial, MOTION.scale.final],
       duration: MOTION.duration,
-      delay: stagger(MOTION.staggerDelay),
-      ease: MOTION.spring,
-    });
-
-    // Tags within items: slight delay stagger
-    animate(el.querySelectorAll(".exp-tag"), {
-      opacity: [0, 1],
-      translateY: [MOTION.slideY.header, 0],
-      duration: MOTION.duration,
-      delay: stagger(MOTION.staggerDelay / 2),
+      delay: 200,
       ease: MOTION.ease,
     });
   }, [isActive]);
@@ -98,63 +106,72 @@ export function Experience({ isActive }: { isActive?: boolean }) {
           // Experience
         </h2>
 
-        <div className="relative mt-8 bg-white/[0.02] rounded-2xl border border-white/[0.05] p-4 sm:p-6 md:p-8">
-          <svg
-            className="absolute left-[15px] sm:left-[19px] md:left-[23px] top-8 w-[2px] h-[calc(100%-4rem)] pointer-events-none"
-            viewBox="0 0 2 500"
-            preserveAspectRatio="none"
-            style={{ overflow: "visible" }}
+        <div className="swiper-container flex justify-center" style={{ opacity: 0 }}>
+          <Swiper
+            effect="cards"
+            grabCursor={true}
+            modules={[EffectCards, Pagination]}
+            pagination={{ clickable: true }}
+            className="max-w-xs sm:max-w-sm md:max-w-md !pb-12"
           >
-            <defs>
-              <linearGradient id="line-grad" x1="0" y1="0" x2="0" y2="1">
-                <stop offset="0%" stopColor="#a855f7" />
-                <stop offset="50%" stopColor="rgba(168,85,247,0.5)" />
-                <stop offset="100%" stopColor="rgba(168,85,247,0.1)" />
-              </linearGradient>
-            </defs>
-            <path
-              d="M1 0 L1 500"
-              stroke="url(#line-grad)"
-              strokeWidth="2"
-              fill="none"
-              strokeLinecap="round"
-            />
-          </svg>
-
-          <div className="space-y-8 sm:space-y-10 pl-8 sm:pl-10">
             {experiences.map((exp, i) => (
-              <div key={i} className="timeline-item relative" style={{ opacity: 0 }}>
-                <div className="absolute -left-8 sm:-left-10 top-1.5 w-3 h-3 sm:w-4 sm:h-4 rounded-full border-2 border-purple-accent bg-[#0a0a0a] shadow-[0_0_20px_rgba(168,85,247,0.8)]" />
+              <SwiperSlide key={i}>
+                <div className="bg-white/[0.03] border border-white/[0.08] rounded-2xl p-6 h-[400px] flex flex-col">
+                  {/* Logo */}
+                  <div className="mb-4">
+                    {exp.logo ? (
+                      <img 
+                        src={exp.logo} 
+                        className="w-8 h-8 rounded object-contain" 
+                        alt={exp.company} 
+                      />
+                    ) : (
+                      <div 
+                        className={`w-8 h-8 rounded-full flex items-center justify-center text-sm font-bold border ${getColorForLetter(exp.company[0])}`}
+                      >
+                        {exp.company[0]}
+                      </div>
+                    )}
+                  </div>
 
-                <div className="flex flex-col sm:flex-row sm:items-center gap-1 sm:gap-3 mb-2">
-                  <h3 className="text-base sm:text-lg font-semibold text-white">{exp.title}</h3>
-                  <span className="text-white/30 hidden sm:inline">·</span>
+                  {/* Title & Company */}
+                  <h3 className="text-lg font-semibold text-white mb-1">{exp.title}</h3>
                   {exp.url ? (
-                    <a href={exp.url} target="_blank" rel="noopener noreferrer" className="text-purple-accent hover:underline text-sm sm:text-base flex items-center gap-2">
-                      {exp.logo && <img src={exp.logo} className="w-5 h-5 rounded" alt={exp.company} />}
+                    <a 
+                      href={exp.url} 
+                      target="_blank" 
+                      rel="noopener noreferrer" 
+                      className="text-purple-accent hover:underline mb-2 inline-block"
+                    >
                       {exp.company}
                     </a>
                   ) : (
-                    <span className="text-white/60 text-sm sm:text-base flex items-center gap-2">
-                      {exp.logo && <img src={exp.logo} className="w-5 h-5 rounded" alt={exp.company} />}
-                      {exp.company}
-                    </span>
+                    <span className="text-white/70 mb-2 block">{exp.company}</span>
                   )}
-                </div>
 
-                <p className="text-xs sm:text-sm text-white/40 mb-3 font-mono">{exp.period}</p>
-                <p className="text-white/60 leading-relaxed mb-4 text-sm sm:text-base">{exp.description}</p>
+                  {/* Period */}
+                  <p className="text-xs text-white/40 mb-4 font-mono">{exp.period}</p>
 
-                <div className="flex flex-wrap gap-2">
-                  {exp.tags.map((tag) => (
-                    <span key={tag} className="exp-tag px-2.5 py-0.5 text-xs rounded-full bg-white/5 border border-white/10 text-white/40" style={{ opacity: 0 }}>
-                      {tag}
-                    </span>
-                  ))}
+                  {/* Description */}
+                  <p className="text-white/60 leading-relaxed mb-auto text-sm">
+                    {exp.description}
+                  </p>
+
+                  {/* Tags */}
+                  <div className="flex flex-wrap gap-2 mt-4">
+                    {exp.tags.map((tag) => (
+                      <span 
+                        key={tag} 
+                        className="px-2.5 py-1 text-xs rounded-full bg-white/5 border border-white/10 text-white/40"
+                      >
+                        {tag}
+                      </span>
+                    ))}
+                  </div>
                 </div>
-              </div>
+              </SwiperSlide>
             ))}
-          </div>
+          </Swiper>
         </div>
       </div>
     </section>

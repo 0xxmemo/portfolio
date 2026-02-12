@@ -1,8 +1,13 @@
 import { useEffect, useRef, useState } from "react";
 import { animate, stagger } from "animejs";
-import { GlowCard } from "../components/GlowCard";
+import { Swiper, SwiperSlide } from 'swiper/react';
+import { EffectCards, Pagination } from 'swiper/modules';
 import { IconExternalLink } from "../components/Icons";
 import { MOTION } from "../lib/motion";
+
+import 'swiper/css';
+import 'swiper/css/effect-cards';
+import 'swiper/css/pagination';
 
 interface Project {
   title: string;
@@ -44,6 +49,7 @@ const projects: Project[] = [
     description: "Customizable crypto launchpad on Base. Winner of Base Builder Grant.", 
     tags: ["Base", "Launchpad", "Solidity"], 
     url: "https://levr.world", 
+    logo: "/logos/levr.ico",
     category: "featured" 
   },
   
@@ -69,6 +75,7 @@ const projects: Project[] = [
     description: "SDK for Levr launchpad protocol.", 
     tags: ["TypeScript", "SDK", "Base"], 
     url: "https://github.com/quantidexyz/levr-sdk", 
+    logo: "/logos/levr.ico",
     category: "sdk" 
   },
   { 
@@ -76,6 +83,7 @@ const projects: Project[] = [
     description: "Shared SDK infrastructure for Quantide projects.", 
     tags: ["TypeScript", "SDK", "Infra"], 
     url: "https://github.com/quantidexyz/oven-sdk", 
+    logo: "/logos/breadcrumb.ico",
     category: "sdk" 
   },
   { 
@@ -83,6 +91,7 @@ const projects: Project[] = [
     description: "TypeScript SDK for interacting with Clanker contracts.", 
     tags: ["TypeScript", "SDK", "Solidity"], 
     url: "https://github.com/quantidexyz/clanker-sdk", 
+    logo: "/logos/clanker.png",
     category: "sdk" 
   },
   
@@ -92,6 +101,7 @@ const projects: Project[] = [
     description: "AI coding agent wrapper — bash loop automation for dev workflows.", 
     tags: ["TypeScript", "AI", "CLI"], 
     url: "https://github.com/0xxmemo/cralph", 
+    logo: "/logos/ralph.png",
     category: "tools" 
   },
   { 
@@ -99,6 +109,7 @@ const projects: Project[] = [
     description: "Session middleware for Hono framework.", 
     tags: ["TypeScript", "Hono", "Middleware"], 
     url: "https://github.com/0xxmemo/hono-sess", 
+    logo: "/logos/hono.svg",
     category: "tools" 
   },
   { 
@@ -106,6 +117,7 @@ const projects: Project[] = [
     description: "TanStack integration utilities with Effect-TS.", 
     tags: ["TypeScript", "TanStack", "Effect"], 
     url: "https://github.com/0xxmemo/tanstack-effect", 
+    logo: "/logos/tanstack.ico",
     category: "tools" 
   },
   { 
@@ -113,6 +125,7 @@ const projects: Project[] = [
     description: "MongoDB leadership election and distributed coordination.", 
     tags: ["TypeScript", "MongoDB", "Distributed"], 
     url: "https://github.com/0xxmemo/mongo-lead", 
+    logo: "/logos/mongodb.ico",
     category: "tools" 
   },
   { 
@@ -120,6 +133,7 @@ const projects: Project[] = [
     description: "CLI tool for Four.meme token platform interactions.", 
     tags: ["TypeScript", "CLI", "DeFi"], 
     url: "https://github.com/0xxmemo/four-meme-cli", 
+    logo: "/logos/fourmeme.png",
     category: "tools" 
   },
   { 
@@ -127,6 +141,7 @@ const projects: Project[] = [
     description: "GeckoTerminal API wrapper for token analytics.", 
     tags: ["TypeScript", "API", "Analytics"], 
     url: "https://github.com/0xxmemo/geckoterm", 
+    logo: "/logos/geckoterminal.ico",
     category: "tools" 
   },
   { 
@@ -134,6 +149,7 @@ const projects: Project[] = [
     description: "Solana token minting utilities.", 
     tags: ["TypeScript", "Solana", "Tokens"], 
     url: "https://github.com/0xxmemo/solmint", 
+    logo: "/logos/solana.png",
     category: "tools" 
   },
 ];
@@ -147,12 +163,10 @@ const categories = [
 // Helper to get first letter color
 function getColorForLetter(letter: string) {
   const colors = [
-    "bg-cyan-500/20 text-cyan-400",
-    "bg-purple-500/20 text-purple-400",
-    "bg-amber-500/20 text-amber-400",
-    "bg-green-500/20 text-green-400",
-    "bg-pink-500/20 text-pink-400",
-    "bg-blue-500/20 text-blue-400",
+    "bg-cyan-500/20 text-cyan-400 border-cyan-500/30",
+    "bg-green-500/20 text-green-400 border-green-500/30",
+    "bg-amber-500/20 text-amber-400 border-amber-500/30",
+    "bg-emerald-500/20 text-emerald-400 border-emerald-500/30",
   ];
   const index = letter.charCodeAt(0) % colors.length;
   return colors[index];
@@ -161,46 +175,9 @@ function getColorForLetter(letter: string) {
 export function Projects({ isActive }: { isActive?: boolean }) {
   const sectionRef = useRef<HTMLElement>(null);
   const hasAnimated = useRef(false);
-  const scrollContainerRef = useRef<HTMLDivElement>(null);
   const [activeCategory, setActiveCategory] = useState<"featured" | "sdk" | "tools">("featured");
-  const [showLeftArrow, setShowLeftArrow] = useState(false);
-  const [showRightArrow, setShowRightArrow] = useState(false);
 
   const filteredProjects = projects.filter(p => p.category === activeCategory);
-
-  // Check scroll position to show/hide arrows
-  const checkScroll = () => {
-    const container = scrollContainerRef.current;
-    if (!container) return;
-    
-    setShowLeftArrow(container.scrollLeft > 10);
-    setShowRightArrow(
-      container.scrollLeft < container.scrollWidth - container.clientWidth - 10
-    );
-  };
-
-  useEffect(() => {
-    const container = scrollContainerRef.current;
-    if (!container) return;
-    
-    checkScroll();
-    container.addEventListener("scroll", checkScroll);
-    window.addEventListener("resize", checkScroll);
-    
-    return () => {
-      container.removeEventListener("scroll", checkScroll);
-      window.removeEventListener("resize", checkScroll);
-    };
-  }, [filteredProjects]);
-
-  // Scroll handlers
-  const scrollLeft = () => {
-    scrollContainerRef.current?.scrollBy({ left: -300, behavior: "smooth" });
-  };
-
-  const scrollRight = () => {
-    scrollContainerRef.current?.scrollBy({ left: 300, behavior: "smooth" });
-  };
 
   // Handle category change with animation
   const handleCategoryChange = (category: typeof activeCategory) => {
@@ -209,19 +186,18 @@ export function Projects({ isActive }: { isActive?: boolean }) {
     const el = sectionRef.current;
     if (!el) return;
 
-    // Fade out current cards
-    animate(el.querySelectorAll(".project-card"), {
+    // Fade out current swiper
+    animate(el.querySelector(".swiper-container")!, {
       opacity: [1, 0],
       duration: 200,
       complete: () => {
         setActiveCategory(category);
-        // Fade in new cards
+        // Fade in new swiper
         setTimeout(() => {
-          animate(el.querySelectorAll(".project-card"), {
+          animate(el.querySelector(".swiper-container")!, {
             opacity: [0, 1],
             translateY: [20, 0],
             duration: 400,
-            delay: stagger(40),
             ease: MOTION.ease,
           });
         }, 50);
@@ -255,14 +231,13 @@ export function Projects({ isActive }: { isActive?: boolean }) {
       ease: MOTION.ease,
     });
 
-    // Project cards: stagger fade + slideY + scale
-    animate(el.querySelectorAll(".project-card"), {
+    // Swiper container: fade + slideY
+    animate(el.querySelector(".swiper-container")!, {
       opacity: [0, 1],
       translateY: [MOTION.slideY.item, 0],
-      scale: [MOTION.scale.initial, MOTION.scale.final],
       duration: MOTION.duration,
-      delay: stagger(MOTION.staggerDelay),
-      ease: MOTION.spring,
+      delay: 200,
+      ease: MOTION.ease,
     });
   }, [isActive]);
 
@@ -294,99 +269,74 @@ export function Projects({ isActive }: { isActive?: boolean }) {
           ))}
         </div>
 
-        {/* Horizontal Scrollable Container */}
-        <div className="relative">
-          {/* Left Arrow */}
-          {showLeftArrow && (
-            <button
-              onClick={scrollLeft}
-              className="hidden md:flex absolute left-0 top-1/2 -translate-y-1/2 z-10 w-10 h-10 items-center justify-center rounded-full bg-white/5 backdrop-blur border border-white/10 hover:bg-white/10 transition-all shadow-lg"
-              aria-label="Scroll left"
-            >
-              <svg className="w-5 h-5 text-white/60" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
-              </svg>
-            </button>
-          )}
-
-          {/* Right Arrow */}
-          {showRightArrow && (
-            <button
-              onClick={scrollRight}
-              className="hidden md:flex absolute right-0 top-1/2 -translate-y-1/2 z-10 w-10 h-10 items-center justify-center rounded-full bg-white/5 backdrop-blur border border-white/10 hover:bg-white/10 transition-all shadow-lg"
-              aria-label="Scroll right"
-            >
-              <svg className="w-5 h-5 text-white/60" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
-              </svg>
-            </button>
-          )}
-
-          {/* Scrollable Cards */}
-          <div
-            ref={scrollContainerRef}
-            className="flex gap-4 overflow-x-auto snap-x snap-mandatory scrollbar-hide pb-4 px-1"
-            style={{ scrollPaddingLeft: "1rem" }}
+        {/* Swiper Cards */}
+        <div className="swiper-container flex justify-center" style={{ opacity: 0 }}>
+          <Swiper
+            key={activeCategory}
+            effect="cards"
+            grabCursor={true}
+            modules={[EffectCards, Pagination]}
+            pagination={{ clickable: true }}
+            className="max-w-xs sm:max-w-sm md:max-w-md !pb-12"
           >
             {filteredProjects.map((project) => (
-              <a
-                key={project.title}
-                href={project.url}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="project-card flex-shrink-0 w-[280px] sm:w-[300px] snap-start group"
-                style={{ opacity: 0 }}
-              >
-                <GlowCard className="p-4 sm:p-5 h-full transition-all duration-500 hover:shadow-[0_0_30px_rgba(34,197,94,0.2)] bg-white/[0.02] border-white/[0.08]">
-                  <div className="flex items-start gap-3 mb-3">
-                    {/* Logo or Letter Circle */}
+              <SwiperSlide key={project.title}>
+                <a
+                  href={project.url}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="block bg-white/[0.03] border border-white/[0.08] rounded-2xl p-6 h-[400px] flex flex-col hover:border-green-accent/30 transition-all duration-300 group"
+                >
+                  {/* Logo */}
+                  <div className="mb-4">
                     {project.logo ? (
                       <img 
                         src={project.logo} 
-                        className="w-6 h-6 rounded object-contain flex-shrink-0" 
+                        className="w-8 h-8 rounded object-contain" 
                         alt={project.title} 
                       />
                     ) : (
                       <div 
-                        className={`w-6 h-6 rounded-full flex items-center justify-center text-xs font-bold flex-shrink-0 ${getColorForLetter(project.title[0])}`}
+                        className={`w-8 h-8 rounded-full flex items-center justify-center text-sm font-bold border ${getColorForLetter(project.title[0])}`}
                       >
                         {project.title[0]}
                       </div>
                     )}
-                    
-                    <div className="flex-1 min-w-0">
-                      <div className="flex items-start justify-between gap-2">
-                        <h3 className="text-base sm:text-lg font-semibold text-white group-hover:text-green-400 transition-colors truncate">
-                          {project.title}
-                        </h3>
-                        <IconExternalLink className="w-4 h-4 text-white/30 group-hover:text-white/60 transition-colors flex-shrink-0" />
-                      </div>
-                    </div>
                   </div>
 
-                  <p className="text-white/60 leading-relaxed mb-4 text-sm line-clamp-2">
+                  {/* Title */}
+                  <div className="flex items-start justify-between gap-2 mb-2">
+                    <h3 className="text-lg font-semibold text-white group-hover:text-green-400 transition-colors">
+                      {project.title}
+                    </h3>
+                    <IconExternalLink className="w-4 h-4 text-white/30 group-hover:text-white/60 transition-colors flex-shrink-0" />
+                  </div>
+
+                  {/* Description */}
+                  <p className="text-white/60 leading-relaxed mb-auto text-sm">
                     {project.description}
                   </p>
 
-                  <div className="flex flex-wrap gap-1.5">
-                    {project.tags.slice(0, 3).map((tag) => (
+                  {/* Tags */}
+                  <div className="flex flex-wrap gap-2 mt-4">
+                    {project.tags.slice(0, 4).map((tag) => (
                       <span 
                         key={tag} 
-                        className="px-2 py-0.5 text-xs rounded-full bg-white/5 border border-white/10 text-white/40"
+                        className="px-2.5 py-1 text-xs rounded-full bg-white/5 border border-white/10 text-white/40"
                       >
                         {tag}
                       </span>
                     ))}
-                    {project.tags.length > 3 && (
-                      <span className="px-2 py-0.5 text-xs rounded-full bg-white/5 border border-white/10 text-white/40">
-                        +{project.tags.length - 3}
+                    {project.tags.length > 4 && (
+                      <span className="px-2.5 py-1 text-xs rounded-full bg-white/5 border border-white/10 text-white/40">
+                        +{project.tags.length - 4}
                       </span>
                     )}
                   </div>
-                </GlowCard>
-              </a>
+                </a>
+              </SwiperSlide>
             ))}
-          </div>
+          </Swiper>
         </div>
       </div>
     </section>
