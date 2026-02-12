@@ -142,7 +142,7 @@ const projects: Project[] = [
     description: "GeckoTerminal API wrapper for token analytics.", 
     tags: ["TypeScript", "API", "Analytics"], 
     url: "https://github.com/0xxmemo/geckoterm", 
-    logo: "/logos/geckoterminal.ico",
+    logo: "/logos/geckoterminal.png",
     category: "tools" 
   },
   { 
