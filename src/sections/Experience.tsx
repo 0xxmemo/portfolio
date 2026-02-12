@@ -1,12 +1,13 @@
 import { useEffect, useRef } from "react";
 import { animate } from "animejs";
 import { Swiper, SwiperSlide } from 'swiper/react';
-import { EffectCards, Pagination } from 'swiper/modules';
+import { Pagination } from 'swiper/modules';
+import EffectCardsStack from '../lib/swiper-effects/effect-cards-stack.js';
 import { MOTION } from "../lib/motion";
 
 import 'swiper/css';
-import 'swiper/css/effect-cards';
 import 'swiper/css/pagination';
+import '../lib/swiper-effects/effect-cards-stack.css';
 
 interface Experience {
   title: string;
@@ -108,11 +109,11 @@ export function Experience({ isActive }: { isActive?: boolean }) {
 
         <div className="swiper-container flex justify-center" style={{ opacity: 0 }}>
           <Swiper
-            effect="cards"
+            effect="cards-stack"
             grabCursor={true}
-            modules={[EffectCards, Pagination]}
+            modules={[EffectCardsStack, Pagination]}
             pagination={{ clickable: true }}
-            className="max-w-xs sm:max-w-sm md:max-w-md !pb-12"
+            className="max-w-xs sm:max-w-sm md:max-w-md !pb-12 swiper-cards-stack"
           >
             {experiences.map((exp, i) => (
               <SwiperSlide key={i}>

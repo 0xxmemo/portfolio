@@ -1,0 +1,39 @@
+/**
+ * UI Initiative Cards Stack Slider
+ *
+ * Cards Stack slider made with Swiper
+ *
+ * https://uiinitiative.com
+ *
+ * Copyright 2025 UI Initiative
+ *
+ * Released under the UI Initiative Regular License
+ *
+ * February 07, 2025
+ */
+
+.swiper.swiper-cards-stack {
+  overflow: visible;
+}
+
+.swiper-cards-stack .swiper-slide {
+  backface-visibility: visible;
+  overflow: visible;
+}
+.swiper-cards-stack .swiper-slide-shadow {
+  background-color: rgba(0, 0, 0, 0.25);
+  border-radius: inherit;
+  transform: translate3d(0px, 0px, 0px);
+}
+.swiper-cards-stack .cards-stack-front,
+.swiper-cards-stack .cards-stack-back {
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  transform-style: preserve-3d;
+  backface-visibility: hidden;
+}
+.swiper-cards-stack .cards-stack-back {
+  pointer-events: none;
+  transform: translate3d(0, 0, 0px) rotateY(180deg);
+}
