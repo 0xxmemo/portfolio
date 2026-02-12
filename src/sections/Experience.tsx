@@ -30,7 +30,7 @@ const experiences: Experience[] = [
     logo: "/logos/floors.svg",
   },
   {
-    title: "Senior Fullstack Lead", 
+    title: "Fullstack Lead", 
     company: "Inverter Network",
     url: "https://inverter.network",
     period: "Sept 2023 — 2024",

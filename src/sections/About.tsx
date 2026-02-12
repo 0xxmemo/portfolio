@@ -86,7 +86,7 @@ export function About({ isActive }: { isActive?: boolean }) {
                 </div>
 
                 <p className="text-base sm:text-lg md:text-xl text-white/90 leading-relaxed">
-                  Software Architect & Engineer crafting the infrastructure layer for decentralized systems. Currently leading full-stack development at{" "}
+                  Senior Software Engineer & Architect with 7 years of experience building infrastructure for decentralized systems. Currently leading full-stack development at{" "}
                   <a href="https://www.floors.finance/" target="_blank" rel="noopener noreferrer" className="text-accent hover:underline">
                     Floor Markets
                   </a>
@@ -94,11 +94,11 @@ export function About({ isActive }: { isActive?: boolean }) {
                 </p>
 
                 <p className="text-sm sm:text-base text-white/60 leading-relaxed">
-                  Previously led SDK architecture at Inverter Network and shipped a cross-chain payment gateway as founding engineer at Crossify. Koc University graduate — ETH Global Istanbul winner, Solana grant recipient, Base Builder grantee. I build things that ship.
+                  Previously led SDK architecture at Inverter Network and shipped a cross-chain payment gateway as founding engineer at Crossify. Attended Koç University — ETH Global Istanbul winner, Solana grant recipient, Base Builder grantee. I build things that ship.
                 </p>
 
                 <div className="flex flex-wrap gap-3 pt-4">
-                  {["TypeScript", "React", "Next.js", "Solidity", "Node.js", "Web3"].map((tag) => (
+                  {["Solidity", "TypeScript", "Go", "Python", "Bun", "React"].map((tag) => (
                     <span key={tag} className="about-tag px-3 py-1.5 text-sm rounded-full bg-white/5 border border-white/10 text-white/50" style={{ opacity: 0 }}>
                       {tag}
                     </span>
