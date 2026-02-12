@@ -117,7 +117,7 @@ export function Experience({ isActive }: { isActive?: boolean }) {
           >
             {experiences.map((exp, i) => (
               <SwiperSlide key={i}>
-                <div className="bg-white/[0.03] border border-white/[0.08] rounded-2xl p-6 h-[400px] flex flex-col">
+                <div className="bg-white/[0.12] backdrop-blur-xl border border-white/[0.18] rounded-2xl p-6 h-[400px] flex flex-col shadow-lg shadow-black/20">
                   {/* Logo */}
                   <div className="mb-4">
                     {exp.logo ? (
