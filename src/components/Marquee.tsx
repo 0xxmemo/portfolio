@@ -16,14 +16,14 @@ export function Marquee({ children, className, reverse = false, speed = 40 }: Pr
   return (
     <div className={cn("flex overflow-hidden [mask-image:linear-gradient(to_right,transparent,white_10%,white_90%,transparent)]", className)}>
       <div
-        className={cn("flex shrink-0 gap-8 items-center", animClass)}
+        className={cn("flex shrink-0 gap-8 items-center pr-8", animClass)}
         style={{ "--duration": `${speed}s` } as React.CSSProperties}
       >
         {children}
       </div>
       <div
         aria-hidden
-        className={cn("flex shrink-0 gap-8 items-center", animClass)}
+        className={cn("flex shrink-0 gap-8 items-center pr-8", animClass)}
         style={{ "--duration": `${speed}s` } as React.CSSProperties}
       >
         {children}
@@ -31,10 +31,10 @@ export function Marquee({ children, className, reverse = false, speed = 40 }: Pr
       <style>{`
         @keyframes marquee {
           0% { transform: translateX(0); }
-          100% { transform: translateX(calc(-100% - 2rem)); }
+          100% { transform: translateX(calc(-100%)); }
         }
         @keyframes marquee-reverse {
-          0% { transform: translateX(calc(-100% - 2rem)); }
+          0% { transform: translateX(calc(-100%)); }
           100% { transform: translateX(0); }
         }
       `}</style>
