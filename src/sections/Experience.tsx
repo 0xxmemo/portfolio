@@ -113,7 +113,7 @@ export function Experience({ isActive }: { isActive?: boolean }) {
             grabCursor={true}
             modules={[EffectCardsStack, Pagination]}
             pagination={{ clickable: true }}
-            className="max-w-xs sm:max-w-sm md:max-w-md !pb-12 swiper-cards-stack"
+            className="w-full max-w-sm sm:max-w-md md:max-w-lg !pb-12 swiper-cards-stack"
           >
             {experiences.map((exp, i) => (
               <SwiperSlide key={i}>

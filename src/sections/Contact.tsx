@@ -55,8 +55,8 @@ export function Contact({ isActive = false }: { isActive?: boolean }) {
   }, [isActive]);
 
   return (
-    <section ref={sectionRef} style={{ opacity: 0 }}>
-      <div className="max-w-2xl mx-auto text-center">
+    <section ref={sectionRef} className="min-h-[60vh] flex items-center" style={{ opacity: 0 }}>
+      <div className="w-full text-center">
         <h2 className="contact-heading text-2xl sm:text-3xl md:text-4xl font-bold text-white mb-4" style={{ opacity: 0 }}>
           Let's Build Together
         </h2>

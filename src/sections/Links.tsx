@@ -47,8 +47,8 @@ export function Links({ isActive = false }: { isActive?: boolean }) {
   }, [isActive]);
 
   return (
-    <section ref={sectionRef} style={{ opacity: 0 }}>
-      <div className="max-w-3xl mx-auto">
+    <section ref={sectionRef} className="min-h-[60vh] flex items-center" style={{ opacity: 0 }}>
+      <div className="w-full">
         <h2 
           className="section-header text-[10px] sm:text-xs font-mono mb-8 sm:mb-10 md:mb-12 tracking-[0.2em] sm:tracking-[0.3em] uppercase"
           style={{ color: "#ec4899", opacity: 0 }}

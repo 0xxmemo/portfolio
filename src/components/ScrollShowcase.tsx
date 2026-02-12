@@ -129,7 +129,7 @@ export function ScrollShowcase() {
             }}
           />
 
-          <div className="w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-12 relative min-h-[70vh] flex items-center">
+          <div className="w-full max-w-4xl mx-auto px-5 sm:px-8 lg:px-12 relative min-h-[70vh] flex items-center">
             {sections.map((section, i) => {
               const Component = section.Component;
               return (
@@ -138,7 +138,7 @@ export function ScrollShowcase() {
                   ref={(el) => {
                     sectionRefs.current[i] = el;
                   }}
-                  className="absolute inset-x-0 top-1/2 -translate-y-1/2 px-4 sm:px-6 lg:px-12"
+                  className="absolute inset-x-0 top-1/2 -translate-y-1/2 px-5 sm:px-8 lg:px-12"
                   style={{
                     opacity: i === 0 ? 1 : 0,
                     pointerEvents: i === activeIndex ? "auto" : "none",

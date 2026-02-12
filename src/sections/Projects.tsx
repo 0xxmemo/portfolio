@@ -278,7 +278,7 @@ export function Projects({ isActive }: { isActive?: boolean }) {
             grabCursor={true}
             modules={[EffectCardsStack, Pagination]}
             pagination={{ clickable: true }}
-            className="max-w-xs sm:max-w-sm md:max-w-md !pb-12 swiper-cards-stack"
+            className="w-full max-w-sm sm:max-w-md md:max-w-lg !pb-12 swiper-cards-stack"
           >
             {filteredProjects.map((project) => (
               <SwiperSlide key={project.title}>
