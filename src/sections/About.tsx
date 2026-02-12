@@ -87,14 +87,14 @@ export function About({ isActive }: { isActive?: boolean }) {
 
                 <p className="text-base sm:text-lg md:text-xl text-white/90 leading-relaxed">
                   Software Architect & Engineer crafting the infrastructure layer for decentralized systems. Currently leading full-stack development at{" "}
-                  <a href="https://inverter.network" target="_blank" rel="noopener noreferrer" className="text-cyan-accent hover:underline">
-                    Inverter Network
+                  <a href="https://www.floors.finance/" target="_blank" rel="noopener noreferrer" className="text-cyan-accent hover:underline">
+                    Floor Markets
                   </a>
-                  , building type-safe SDKs and modular applications that make blockchain interactions seamless.
+                  , building a leveraged DeFi protocol with built-in floor protection — no liquidations, no interest.
                 </p>
 
                 <p className="text-sm sm:text-base text-white/60 leading-relaxed">
-                  Koc University graduate with a background in English Literature — bringing a unique blend of narrative thinking and technical precision to every project. From founding engineer roles to hackathon wins at ETH Global and Solana, I build things that ship.
+                  Previously led SDK architecture at Inverter Network and shipped a cross-chain payment gateway as founding engineer at Crossify. Koc University graduate — ETH Global Istanbul winner, Solana grant recipient, Base Builder grantee. I build things that ship.
                 </p>
 
                 <div className="flex flex-wrap gap-3 pt-4">

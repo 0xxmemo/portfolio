@@ -44,6 +44,7 @@ const experiences: Experience[] = [
     period: "2022 — 2023",
     description: "First engineer hire. Architected and shipped a cross-chain crypto payment gateway end-to-end — backend (Node.js, Express, Ethers), frontend (Next.js SSR), Docker/AWS deployment. Handled multi-chain transaction routing in production.",
     tags: ["React", "Solidity", "Node.js", "AWS", "Docker"],
+    logo: "/logos/crossify.png",
   },
   {
     title: "Frontend Intern",
@@ -51,6 +52,7 @@ const experiences: Experience[] = [
     period: "2019 — 2020", 
     description: "Built consumer-facing UI at one of Turkey's fastest-growing unicorn startups (valued at $11.8B at peak). Worked on high-traffic web apps serving millions of users across React and Angular.",
     tags: ["React", "Angular", "JavaScript", "UI/UX"],
+    logo: "/logos/getir.png",
   },
 ];
 
