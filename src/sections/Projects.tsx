@@ -23,32 +23,32 @@ const projects: Project[] = [
   // Featured Projects
   { 
     title: "Floor Markets", 
-    description: "Decentralized trading platform with innovative floor pricing mechanics.", 
-    tags: ["DeFi", "Trading", "TypeScript"], 
+    description: "Leveraged DeFi protocol — amplify token price & yield up to 20× with floor protection. No liquidations, no interest. Redeem at market price anytime.", 
+    tags: ["DeFi", "Leverage", "TypeScript", "Viem"], 
     url: "https://www.floors.finance/", 
     logo: "/logos/floors.svg", 
     category: "featured" 
   },
   { 
     title: "Controlroom", 
-    description: "Modular dashboard for managing decentralized workflows and protocol operations.", 
-    tags: ["Next.js", "Full-Stack", "Dashboard"], 
+    description: "Modular operations dashboard for Inverter Network. Manage decentralized workflows, deploy modules, and monitor protocol state — all from one responsive interface.", 
+    tags: ["Next.js", "Full-Stack", "Dashboard", "Web3"], 
     url: "https://beta.controlroom.inverter.network/", 
     logo: "/logos/controlroom.ico", 
     category: "featured" 
   },
   { 
     title: "Breadcrumb.cash", 
-    description: "InfoFi platform with 2,652+ followers. On-chain intelligence and analytics.", 
-    tags: ["InfoFi", "Analytics", "Community"], 
+    description: "Decentralized InfoFi platform on Base with 2,600+ followers (10× personal account). On-chain intelligence, analytics, and a Reply Agent for X/Twitter automation.", 
+    tags: ["InfoFi", "Base", "Analytics", "AI Agent"], 
     url: "https://breadcrumb.cash", 
     logo: "/logos/breadcrumb.ico", 
     category: "featured" 
   },
   { 
     title: "Levr", 
-    description: "Customizable crypto launchpad on Base. Winner of Base Builder Grant.", 
-    tags: ["Base", "Launchpad", "Solidity"], 
+    description: "Customizable crypto launchpad on Base & BNB Chain. Staking, DAO treasury, liquidity pools, airdrop modules. Base Builder Grant winner. Sherlock-audited.", 
+    tags: ["Base", "BNB", "Launchpad", "Solidity"], 
     url: "https://levr.world", 
     logo: "/logos/levr.ico",
     category: "featured" 
@@ -57,40 +57,40 @@ const projects: Project[] = [
   // SDKs & Libraries
   { 
     title: "Inverter SDK", 
-    description: "Type-safe SDK for blockchain interactions. Composable modules for DeFi.", 
-    tags: ["TypeScript", "SDK", "Web3"], 
+    description: "Highly generic, type-safe SDK for composable blockchain interactions. Auto-generated types from on-chain module metadata. Powers Controlroom and third-party integrations.", 
+    tags: ["TypeScript", "SDK", "Viem", "Wagmi"], 
     url: "https://github.com/InverterNetwork/sdk", 
     logo: "/logos/inverter.ico", 
     category: "sdk" 
   },
   { 
     title: "Floors SDK", 
-    description: "SDK for Floor Markets protocol interactions.", 
-    tags: ["TypeScript", "SDK", "DeFi"], 
+    description: "SDK for Floor Markets protocol — handles leveraged positions, floor price calculations, and redemption flows with full type safety.", 
+    tags: ["TypeScript", "SDK", "DeFi", "Ethers"], 
     url: "https://github.com/InverterNetwork/floors-sdk", 
     logo: "/logos/floors.svg", 
     category: "sdk" 
   },
   { 
     title: "Levr SDK", 
-    description: "SDK for Levr launchpad protocol.", 
-    tags: ["TypeScript", "SDK", "Base"], 
+    description: "SDK for Levr launchpad protocol — staking, token launches, DAO treasury, and airdrop module interactions.", 
+    tags: ["TypeScript", "SDK", "Base", "Solidity"], 
     url: "https://github.com/quantidexyz/levr-sdk", 
     logo: "/logos/levr.ico",
     category: "sdk" 
   },
   { 
     title: "Oven SDK", 
-    description: "Shared SDK infrastructure for Quantide projects.", 
-    tags: ["TypeScript", "SDK", "Infra"], 
+    description: "Shared SDK infrastructure layer for Quantide ecosystem. Common utilities, contract interfaces, and cross-project tooling.", 
+    tags: ["TypeScript", "SDK", "Monorepo", "Infra"], 
     url: "https://github.com/quantidexyz/oven-sdk", 
     logo: "/logos/breadcrumb.ico",
     category: "sdk" 
   },
   { 
     title: "Clanker SDK", 
-    description: "TypeScript SDK for interacting with Clanker contracts.", 
-    tags: ["TypeScript", "SDK", "Solidity"], 
+    description: "TypeScript SDK for Clanker token factory contracts — deploy, manage, and interact with tokenized assets on Base.", 
+    tags: ["TypeScript", "SDK", "Base", "Tokens"], 
     url: "https://github.com/quantidexyz/clanker-sdk", 
     logo: "/logos/clanker.png",
     category: "sdk" 
@@ -99,31 +99,31 @@ const projects: Project[] = [
   // Tools & Experiments
   { 
     title: "cralph", 
-    description: "AI coding agent wrapper — bash loop automation for dev workflows.", 
-    tags: ["TypeScript", "AI", "CLI"], 
+    description: "AI coding agent wrapper — bash loop that orchestrates Claude/GPT for autonomous coding sessions. Think Cursor but in the terminal.", 
+    tags: ["TypeScript", "AI", "CLI", "Agents"], 
     url: "https://github.com/0xxmemo/cralph", 
     logo: "/logos/ralph.png",
     category: "tools" 
   },
   { 
     title: "hono-sess", 
-    description: "Session middleware for Hono framework.", 
-    tags: ["TypeScript", "Hono", "Middleware"], 
+    description: "Lightweight session middleware for Hono framework. Cookie-based sessions with pluggable stores.", 
+    tags: ["TypeScript", "Hono", "Middleware", "Auth"], 
     url: "https://github.com/0xxmemo/hono-sess", 
     logo: "/logos/hono.svg",
     category: "tools" 
   },
   { 
     title: "tanstack-effect", 
-    description: "TanStack integration utilities with Effect-TS.", 
-    tags: ["TypeScript", "TanStack", "Effect"], 
+    description: "Bridge between TanStack Query and Effect-TS — type-safe async data fetching with functional error handling.", 
+    tags: ["TypeScript", "TanStack", "Effect-TS"], 
     url: "https://github.com/0xxmemo/tanstack-effect", 
     logo: "/logos/tanstack.ico",
     category: "tools" 
   },
   { 
     title: "mongo-lead", 
-    description: "MongoDB leadership election and distributed coordination.", 
+    description: "MongoDB-based leader election for distributed Node.js services. Heartbeat-driven, zero external deps.", 
     tags: ["TypeScript", "MongoDB", "Distributed"], 
     url: "https://github.com/0xxmemo/mongo-lead", 
     logo: "/logos/mongodb.ico",
@@ -131,24 +131,24 @@ const projects: Project[] = [
   },
   { 
     title: "four-meme-cli", 
-    description: "CLI tool for Four.meme token platform interactions.", 
-    tags: ["TypeScript", "CLI", "DeFi"], 
+    description: "CLI for Four.meme token platform — snipe launches, manage positions, and interact with the bonding curve from the terminal.", 
+    tags: ["TypeScript", "CLI", "DeFi", "BNB"], 
     url: "https://github.com/0xxmemo/four-meme-cli", 
     logo: "/logos/fourmeme.png",
     category: "tools" 
   },
   { 
     title: "geckoterm", 
-    description: "GeckoTerminal API wrapper for token analytics.", 
-    tags: ["TypeScript", "API", "Analytics"], 
+    description: "Typed GeckoTerminal API wrapper — pool analytics, OHLCV data, token prices, and trending pairs across 200+ networks.", 
+    tags: ["TypeScript", "API", "Analytics", "DeFi"], 
     url: "https://github.com/0xxmemo/geckoterm", 
     logo: "/logos/geckoterminal.png",
     category: "tools" 
   },
   { 
     title: "solmint", 
-    description: "Solana token minting utilities.", 
-    tags: ["TypeScript", "Solana", "Tokens"], 
+    description: "Solana token minting toolkit — create SPL tokens, set metadata, and manage mint authorities from CLI or code.", 
+    tags: ["TypeScript", "Solana", "SPL", "CLI"], 
     url: "https://github.com/0xxmemo/solmint", 
     logo: "/logos/solana.png",
     category: "tools" 

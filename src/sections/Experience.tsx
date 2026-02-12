@@ -25,8 +25,8 @@ const experiences: Experience[] = [
     company: "Floor Markets",
     url: "https://www.floors.finance/",
     period: "2024 — Present",
-    description: "Leading full-stack development of Floor Markets, a decentralized trading platform. Building the Floors SDK for seamless protocol interactions.",
-    tags: ["TypeScript", "Next.js", "SDK", "DeFi"],
+    description: "Building a leveraged DeFi protocol where users amplify token price & yield up to 20× — with built-in floor protection. No liquidations, no interest. Architecting the Floors SDK, frontend, and smart contract integrations.",
+    tags: ["TypeScript", "Next.js", "Viem", "DeFi", "SDK"],
     logo: "/logos/floors.svg",
   },
   {
@@ -34,23 +34,23 @@ const experiences: Experience[] = [
     company: "Inverter Network",
     url: "https://inverter.network",
     period: "Sept 2023 — 2024",
-    description: "Led development of Inverter SDK for type-safe blockchain interactions and Controlroom, a modular full-stack Next.js application.",
-    tags: ["TypeScript", "Next.js", "SDK Design", "Web3"],
+    description: "Architected the Inverter SDK — a highly generic, type-safe toolkit for composable blockchain interactions. Built Controlroom, a modular dashboard for managing decentralized workflows. Shipped architecture diagrams, internal docs, and developer tooling.",
+    tags: ["TypeScript", "Next.js", "SDK Design", "Web3", "Wagmi"],
     logo: "/logos/inverter.ico",
   },
   {
     title: "Founding Engineer",
     company: "Crossify",
     period: "2022 — 2023",
-    description: "Built core infrastructure as the first engineer. Designed and shipped cross-chain payment gateway from zero to production.",
-    tags: ["React", "Solidity", "Node.js", "Cross-chain"],
+    description: "First engineer hire. Architected and shipped a cross-chain crypto payment gateway end-to-end — backend (Node.js, Express, Ethers), frontend (Next.js SSR), Docker/AWS deployment. Handled multi-chain transaction routing in production.",
+    tags: ["React", "Solidity", "Node.js", "AWS", "Docker"],
   },
   {
     title: "Frontend Intern",
     company: "Getir",
     period: "2019 — 2020", 
-    description: "Early career experience at one of Turkey's fastest-growing startups, working on consumer-facing web applications at scale.",
-    tags: ["React", "JavaScript", "CSS"],
+    description: "Built consumer-facing UI at one of Turkey's fastest-growing unicorn startups (valued at $11.8B at peak). Worked on high-traffic web apps serving millions of users across React and Angular.",
+    tags: ["React", "Angular", "JavaScript", "UI/UX"],
   },
 ];
 
@@ -117,7 +117,11 @@ export function Experience({ isActive }: { isActive?: boolean }) {
           >
             {experiences.map((exp, i) => (
               <SwiperSlide key={i}>
-                <div className="relative bg-white/[0.12] border border-white/[0.18] rounded-2xl p-6 h-[400px] flex flex-col shadow-lg shadow-black/20 [backdrop-filter:blur(24px)] [-webkit-backdrop-filter:blur(24px)] [will-change:transform] [transform:translateZ(0)]">
+                <div className="relative rounded-2xl h-[400px] shadow-lg shadow-black/20 overflow-hidden">
+                  {/* Blur background layer — isolated from 3D transforms */}
+                  <div className="absolute inset-0 bg-white/[0.12] border border-white/[0.18] rounded-2xl [backdrop-filter:blur(24px)] [-webkit-backdrop-filter:blur(24px)] [transform:translateZ(0)]" />
+                  {/* Content */}
+                  <div className="relative z-10 p-6 h-full flex flex-col">
                   {/* Logo */}
                   <div className="mb-4">
                     {exp.logo ? (
@@ -168,6 +172,7 @@ export function Experience({ isActive }: { isActive?: boolean }) {
                         {tag}
                       </span>
                     ))}
+                  </div>
                   </div>
                 </div>
               </SwiperSlide>
