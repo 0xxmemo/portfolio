@@ -286,7 +286,7 @@ export function Projects({ isActive }: { isActive?: boolean }) {
                   href={project.url}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="block bg-white/[0.12] backdrop-blur-xl border border-white/[0.18] rounded-2xl p-6 h-[400px] flex flex-col hover:border-green-accent/30 transition-all duration-300 group shadow-lg shadow-black/20"
+                  className="block relative bg-white/[0.12] border border-white/[0.18] rounded-2xl p-6 h-[400px] flex flex-col hover:border-green-accent/30 transition-all duration-300 group shadow-lg shadow-black/20 [backdrop-filter:blur(24px)] [-webkit-backdrop-filter:blur(24px)] [will-change:transform] [transform:translateZ(0)]"
                 >
                   {/* Logo */}
                   <div className="mb-4">

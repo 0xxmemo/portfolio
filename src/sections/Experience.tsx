@@ -33,8 +33,8 @@ const experiences: Experience[] = [
     title: "Senior Fullstack Lead", 
     company: "Inverter Network",
     url: "https://inverter.network",
-    period: "Sept 2023 — Present",
-    description: "Leading development of Inverter SDK for type-safe blockchain interactions and Controlroom, a modular full-stack Next.js application.",
+    period: "Sept 2023 — 2024",
+    description: "Led development of Inverter SDK for type-safe blockchain interactions and Controlroom, a modular full-stack Next.js application.",
     tags: ["TypeScript", "Next.js", "SDK Design", "Web3"],
     logo: "/logos/inverter.ico",
   },
@@ -117,7 +117,7 @@ export function Experience({ isActive }: { isActive?: boolean }) {
           >
             {experiences.map((exp, i) => (
               <SwiperSlide key={i}>
-                <div className="bg-white/[0.12] backdrop-blur-xl border border-white/[0.18] rounded-2xl p-6 h-[400px] flex flex-col shadow-lg shadow-black/20">
+                <div className="relative bg-white/[0.12] border border-white/[0.18] rounded-2xl p-6 h-[400px] flex flex-col shadow-lg shadow-black/20 [backdrop-filter:blur(24px)] [-webkit-backdrop-filter:blur(24px)] [will-change:transform] [transform:translateZ(0)]">
                   {/* Logo */}
                   <div className="mb-4">
                     {exp.logo ? (
