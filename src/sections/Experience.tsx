@@ -2,30 +2,47 @@ import { useEffect, useRef } from "react";
 import { animate, stagger } from "animejs";
 import { MOTION } from "../lib/motion";
 
-const experiences = [
+interface Experience {
+  title: string;
+  company: string;
+  url?: string;
+  period: string;
+  description: string;
+  tags: string[];
+  logo?: string;
+}
+
+const experiences: Experience[] = [
   {
-    title: "Senior Fullstack Lead",
+    title: "Fullstack Lead",
+    company: "Floor Markets",
+    url: "https://www.floors.finance/",
+    period: "2024 — Present",
+    description: "Leading full-stack development of Floor Markets, a decentralized trading platform. Building the Floors SDK for seamless protocol interactions.",
+    tags: ["TypeScript", "Next.js", "SDK", "DeFi"],
+    logo: "/logos/floors.svg",
+  },
+  {
+    title: "Senior Fullstack Lead", 
     company: "Inverter Network",
     url: "https://inverter.network",
     period: "Sept 2023 — Present",
-    description:
-      "Leading development of Inverter SDK for type-safe blockchain interactions and Controlroom, a modular full-stack Next.js application. Architecting highly generic, composable systems.",
+    description: "Leading development of Inverter SDK for type-safe blockchain interactions and Controlroom, a modular full-stack Next.js application.",
     tags: ["TypeScript", "Next.js", "SDK Design", "Web3"],
+    logo: "/logos/inverter.ico",
   },
   {
     title: "Founding Engineer",
     company: "Crossify",
     period: "2022 — 2023",
-    description:
-      "Built core infrastructure as the first engineer. Designed and shipped cross-chain solutions from zero to production.",
+    description: "Built core infrastructure as the first engineer. Designed and shipped cross-chain payment gateway from zero to production.",
     tags: ["React", "Solidity", "Node.js", "Cross-chain"],
   },
   {
     title: "Frontend Intern",
     company: "Getir",
-    period: "2019 — 2020",
-    description:
-      "Early career experience at one of Turkey's fastest-growing startups, working on consumer-facing web applications at scale.",
+    period: "2019 — 2020", 
+    description: "Early career experience at one of Turkey's fastest-growing startups, working on consumer-facing web applications at scale.",
     tags: ["React", "JavaScript", "CSS"],
   },
 ];
@@ -113,11 +130,15 @@ export function Experience({ isActive }: { isActive?: boolean }) {
                   <h3 className="text-base sm:text-lg font-semibold text-white">{exp.title}</h3>
                   <span className="text-white/30 hidden sm:inline">·</span>
                   {exp.url ? (
-                    <a href={exp.url} target="_blank" rel="noopener noreferrer" className="text-purple-accent hover:underline text-sm sm:text-base">
+                    <a href={exp.url} target="_blank" rel="noopener noreferrer" className="text-purple-accent hover:underline text-sm sm:text-base flex items-center gap-2">
+                      {exp.logo && <img src={exp.logo} className="w-5 h-5 rounded" alt={exp.company} />}
                       {exp.company}
                     </a>
                   ) : (
-                    <span className="text-white/60 text-sm sm:text-base">{exp.company}</span>
+                    <span className="text-white/60 text-sm sm:text-base flex items-center gap-2">
+                      {exp.logo && <img src={exp.logo} className="w-5 h-5 rounded" alt={exp.company} />}
+                      {exp.company}
+                    </span>
                   )}
                 </div>
 
