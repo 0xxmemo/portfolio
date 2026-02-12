@@ -1,16 +1,13 @@
 import { useEffect, useRef } from "react";
 import { animate, stagger } from "animejs";
 import { GlowCard } from "../components/GlowCard";
-import { FaTrophy, FaMedal, FaDollarSign } from "react-icons/fa";
-import { HiSparkles } from "react-icons/hi";
 import { MOTION } from "../lib/motion";
-import type { ReactNode } from "react";
 
-const awards: { title: string; subtitle: string; icon: ReactNode }[] = [
-  { title: "ETH Global Istanbul", subtitle: "Hackathon Winner", icon: <FaTrophy className="text-yellow-400" /> },
-  { title: "Solana Demo Day", subtitle: "Winner", icon: <FaMedal className="text-amber-400" /> },
-  { title: "Solana Turkey Grant", subtitle: "Grant Recipient", icon: <FaDollarSign className="text-green-400" /> },
-  { title: "Base Builder Grant", subtitle: "Levr Project", icon: <HiSparkles className="text-blue-400" /> },
+const awards = [
+  { title: "ETH Global Istanbul", subtitle: "Hackathon Winner — Scroll, ChainLink, Safe, ENS", logo: "/logos/ethglobal.png" },
+  { title: "Solana Demo Day", subtitle: "Winner — Superteam", logo: "/logos/solana-award.png" },
+  { title: "Solana Turkey Grant", subtitle: "Grant Recipient — Superteam", logo: "/logos/solana-award.png" },
+  { title: "Base Builder Grant", subtitle: "Levr — Coinbase Base Ecosystem", logo: "/logos/base.png" },
 ];
 
 export function Awards({ isActive }: { isActive?: boolean }) {
@@ -23,10 +20,8 @@ export function Awards({ isActive }: { isActive?: boolean }) {
     if (!el) return;
     hasAnimated.current = true;
 
-    // Make section visible
     el.style.opacity = "1";
 
-    // Header: fade + slideX
     animate(el.querySelector(".section-header")!, {
       opacity: [0, 1],
       translateX: [MOTION.slideX.header, 0],
@@ -34,7 +29,6 @@ export function Awards({ isActive }: { isActive?: boolean }) {
       ease: MOTION.ease,
     });
 
-    // Award cards: stagger fade + slideY + scale
     animate(el.querySelectorAll(".award-card"), {
       opacity: [0, 1],
       translateY: [MOTION.slideY.item, 0],
@@ -59,7 +53,11 @@ export function Awards({ isActive }: { isActive?: boolean }) {
           {awards.map((award) => (
             <div key={award.title} className="award-card" style={{ opacity: 0 }}>
               <GlowCard className="p-4 sm:p-5 flex items-center gap-3 sm:gap-4 bg-white/[0.02] border-white/[0.08] hover:border-yellow-500/30 transition-all duration-300">
-                <span className="text-2xl sm:text-3xl flex-shrink-0">{award.icon}</span>
+                <img 
+                  src={award.logo} 
+                  alt={award.title} 
+                  className="w-10 h-10 sm:w-12 sm:h-12 rounded-lg object-contain flex-shrink-0" 
+                />
                 <div>
                   <h3 className="font-semibold text-white text-sm sm:text-base">{award.title}</h3>
                   <p className="text-xs sm:text-sm text-white/50">{award.subtitle}</p>
