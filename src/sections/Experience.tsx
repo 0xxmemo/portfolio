@@ -59,10 +59,10 @@ const experiences: Experience[] = [
 // Helper to get first letter color
 function getColorForLetter(letter: string) {
   const colors = [
-    "bg-purple-500/20 text-purple-400 border-purple-500/30",
-    "bg-pink-500/20 text-pink-400 border-pink-500/30",
-    "bg-violet-500/20 text-violet-400 border-violet-500/30",
-    "bg-fuchsia-500/20 text-fuchsia-400 border-fuchsia-500/30",
+    "bg-emerald-500/20 text-emerald-400 border-emerald-500/30",
+    "bg-emerald-600/20 text-emerald-300 border-emerald-600/30",
+    "bg-emerald-700/20 text-emerald-200 border-emerald-700/30",
+    "bg-emerald-400/20 text-emerald-400 border-emerald-400/30",
   ];
   const index = letter.charCodeAt(0) % colors.length;
   return colors[index];
@@ -104,7 +104,7 @@ export function Experience({ isActive }: { isActive?: boolean }) {
       <div className="w-full">
         <h2 
           className="section-header text-[10px] sm:text-xs font-mono mb-8 sm:mb-10 md:mb-12 tracking-[0.2em] sm:tracking-[0.3em] uppercase"
-          style={{ color: "#a855f7", opacity: 0 }}
+          style={{ color: "#059669", opacity: 0 }}
         >
           // Experience
         </h2>
@@ -144,7 +144,7 @@ export function Experience({ isActive }: { isActive?: boolean }) {
                       href={exp.url} 
                       target="_blank" 
                       rel="noopener noreferrer" 
-                      className="text-purple-accent hover:underline mb-2 inline-block"
+                      className="text-accent-dark hover:underline mb-2 inline-block"
                     >
                       {exp.company}
                     </a>

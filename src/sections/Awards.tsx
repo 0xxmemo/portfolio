@@ -44,7 +44,7 @@ export function Awards({ isActive }: { isActive?: boolean }) {
       <div className="w-full">
         <h2 
           className="section-header text-[10px] sm:text-xs font-mono mb-8 sm:mb-10 md:mb-12 tracking-[0.2em] sm:tracking-[0.3em] uppercase"
-          style={{ color: "#eab308", opacity: 0 }}
+          style={{ color: "#10b981", opacity: 0 }}
         >
           // Awards & Grants
         </h2>
@@ -52,7 +52,7 @@ export function Awards({ isActive }: { isActive?: boolean }) {
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 sm:gap-4 mt-8">
           {awards.map((award) => (
             <div key={award.title} className="award-card" style={{ opacity: 0 }}>
-              <GlowCard className="p-4 sm:p-5 flex items-center gap-3 sm:gap-4 bg-white/[0.02] border-white/[0.08] hover:border-yellow-500/30 transition-all duration-300">
+              <GlowCard className="p-4 sm:p-5 flex items-center gap-3 sm:gap-4 bg-white/[0.02] border-white/[0.08] hover:border-emerald-500/30 transition-all duration-300">
                 <img 
                   src={award.logo} 
                   alt={award.title} 

@@ -7,7 +7,7 @@ interface Props {
 }
 
 const cards = [
-  { title: "Inverter SDK", color: "#06b6d4", tags: ["TypeScript", "SDK", "Web3"] },
+  { title: "Inverter SDK", color: "#10b981", tags: ["TypeScript", "SDK", "Web3"] },
   { title: "Breadcrumb", color: "#f59e0b", tags: ["InfoFi", "Analytics"] },
   { title: "Levr", color: "#22c55e", tags: ["Base", "Launchpad"] },
 ];

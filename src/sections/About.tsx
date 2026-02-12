@@ -59,7 +59,7 @@ export function About({ isActive }: { isActive?: boolean }) {
       <div className="w-full">
         <h2 
           className="section-header text-[10px] sm:text-xs font-mono mb-8 sm:mb-10 md:mb-12 tracking-[0.2em] sm:tracking-[0.3em] uppercase"
-          style={{ color: "#00f0ff", opacity: 0 }}
+          style={{ color: "#10b981", opacity: 0 }}
         >
           // About
         </h2>
@@ -69,11 +69,11 @@ export function About({ isActive }: { isActive?: boolean }) {
             <div className="flex flex-col sm:flex-row gap-8 items-start">
               <div className="flex-shrink-0 mx-auto sm:mx-0">
                 <div className="relative w-32 h-32 sm:w-40 sm:h-40">
-                  <div className="absolute inset-0 rounded-full bg-gradient-to-br from-cyan-accent/30 to-purple-accent/30 blur-xl" />
+                  <div className="absolute inset-0 rounded-full bg-gradient-to-br from-accent/30 to-accent-dark/30 blur-xl" />
                   <img
                     src="/profile.jpg"
                     alt="0xMemo - Mehmet Guleryuz"
-                    className="about-profile-img relative w-full h-full rounded-full object-cover border-2 border-cyan-accent/30"
+                    className="about-profile-img relative w-full h-full rounded-full object-cover border-2 border-accent/30"
                     style={{ opacity: 0 }}
                   />
                 </div>
@@ -87,7 +87,7 @@ export function About({ isActive }: { isActive?: boolean }) {
 
                 <p className="text-base sm:text-lg md:text-xl text-white/90 leading-relaxed">
                   Software Architect & Engineer crafting the infrastructure layer for decentralized systems. Currently leading full-stack development at{" "}
-                  <a href="https://www.floors.finance/" target="_blank" rel="noopener noreferrer" className="text-cyan-accent hover:underline">
+                  <a href="https://www.floors.finance/" target="_blank" rel="noopener noreferrer" className="text-accent hover:underline">
                     Floor Markets
                   </a>
                   , building a leveraged DeFi protocol with built-in floor protection — no liquidations, no interest.

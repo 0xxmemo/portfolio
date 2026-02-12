@@ -164,9 +164,9 @@ const categories = [
 // Helper to get first letter color
 function getColorForLetter(letter: string) {
   const colors = [
-    "bg-cyan-500/20 text-cyan-400 border-cyan-500/30",
-    "bg-green-500/20 text-green-400 border-green-500/30",
-    "bg-amber-500/20 text-amber-400 border-amber-500/30",
+    "bg-emerald-500/20 text-emerald-400 border-emerald-500/30",
+    "bg-emerald-600/20 text-emerald-300 border-emerald-600/30",
+    "bg-emerald-700/20 text-emerald-200 border-emerald-700/30",
     "bg-emerald-500/20 text-emerald-400 border-emerald-500/30",
   ];
   const index = letter.charCodeAt(0) % colors.length;
@@ -247,7 +247,7 @@ export function Projects({ isActive }: { isActive?: boolean }) {
       <div className="w-full">
         <h2 
           className="section-header text-[10px] sm:text-xs font-mono mb-8 sm:mb-10 md:mb-12 tracking-[0.2em] sm:tracking-[0.3em] uppercase"
-          style={{ color: "#22c55e", opacity: 0 }}
+          style={{ color: "#34d399", opacity: 0 }}
         >
           // Projects
         </h2>
@@ -260,7 +260,7 @@ export function Projects({ isActive }: { isActive?: boolean }) {
               onClick={() => handleCategoryChange(cat.id)}
               className={`category-tab px-4 py-2 rounded-lg text-sm font-medium transition-all whitespace-nowrap ${
                 activeCategory === cat.id
-                  ? "bg-green-accent/20 text-green-accent border border-green-accent/30"
+                  ? "bg-accent/20 text-accent border border-accent/30"
                   : "bg-white/[0.02] text-white/40 border border-white/10 hover:bg-white/[0.05] hover:text-white/60"
               }`}
               style={{ opacity: 0 }}
@@ -286,7 +286,7 @@ export function Projects({ isActive }: { isActive?: boolean }) {
                   href={project.url}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="block bg-[#1a1a2e]/90 border border-white/[0.15] rounded-2xl p-6 h-[400px] flex flex-col hover:border-green-accent/30 transition-all duration-300 group shadow-lg shadow-black/30"
+                  className="block bg-[#1a1a2e]/90 border border-white/[0.15] rounded-2xl p-6 h-[400px] flex flex-col hover:border-accent/30 transition-all duration-300 group shadow-lg shadow-black/30"
                 >
                   {/* Logo */}
                   <div className="mb-4">
@@ -307,7 +307,7 @@ export function Projects({ isActive }: { isActive?: boolean }) {
 
                   {/* Title */}
                   <div className="flex items-start justify-between gap-2 mb-2">
-                    <h3 className="text-lg font-semibold text-white group-hover:text-green-400 transition-colors">
+                    <h3 className="text-lg font-semibold text-white group-hover:text-emerald-400 transition-colors">
                       {project.title}
                     </h3>
                     <IconExternalLink className="w-4 h-4 text-white/30 group-hover:text-white/60 transition-colors flex-shrink-0" />

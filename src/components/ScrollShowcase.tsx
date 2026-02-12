@@ -9,13 +9,13 @@ import { Links } from "../sections/Links";
 import { Contact } from "../sections/Contact";
 
 const sections = [
-  { id: "about", label: "// About", color: "#06b6d4", Component: About },
-  { id: "experience", label: "// Experience", color: "#a855f7", Component: Experience },
-  { id: "projects", label: "// Projects", color: "#22c55e", Component: Projects },
-  { id: "tech", label: "// Tech Stack", color: "#f97316", Component: TechStack },
-  { id: "awards", label: "// Awards & Grants", color: "#eab308", Component: Awards },
-  { id: "links", label: "// Connect", color: "#ec4899", Component: Links },
-  { id: "contact", label: "// Contact", color: "#f43f5e", Component: Contact },
+  { id: "about", label: "// About", color: "#10b981", Component: About },
+  { id: "experience", label: "// Experience", color: "#059669", Component: Experience },
+  { id: "projects", label: "// Projects", color: "#34d399", Component: Projects },
+  { id: "tech", label: "// Tech Stack", color: "#6ee7b7", Component: TechStack },
+  { id: "awards", label: "// Awards & Grants", color: "#10b981", Component: Awards },
+  { id: "links", label: "// Connect", color: "#059669", Component: Links },
+  { id: "contact", label: "// Contact", color: "#34d399", Component: Contact },
 ];
 
 function ScrollSidebar({ activeIndex }: { activeIndex: number }) {

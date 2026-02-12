@@ -86,7 +86,7 @@ export function TimelineDemo({ progress: _progress }: Props) {
           return (
             <div key={company.name} className="absolute" style={{ top: `${dotY}px`, left: "80px" }}>
               <div
-                className="timeline-dot absolute -left-[8px] -top-[8px] w-4 h-4 rounded-full border-2 border-purple-accent bg-[#0a0a0a] shadow-[0_0_12px_rgba(168,85,247,0.6)]"
+                className="timeline-dot absolute -left-[8px] -top-[8px] w-4 h-4 rounded-full border-2 border-emerald-500 bg-[#0a0a0a] shadow-[0_0_12px_rgba(16,185,129,0.6)]"
                 style={{ opacity: 0, transform: "scale(0)" }}
               />
               

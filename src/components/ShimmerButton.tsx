@@ -16,8 +16,8 @@ export function ShimmerButton({ children, className, href }: Props) {
       rel={href ? "noopener noreferrer" : undefined}
       className={cn(
         "relative inline-flex items-center justify-center px-5 sm:px-8 py-3 sm:py-4 text-sm sm:text-base rounded-xl font-semibold text-white overflow-hidden",
-        "bg-gradient-to-r from-cyan-accent/20 to-purple-accent/20",
-        "border border-cyan-accent/30 hover:border-cyan-accent/60",
+        "bg-gradient-to-r from-accent/20 to-accent-dark/20",
+        "border border-accent/30 hover:border-accent/60",
         "transition-all duration-300 group",
         "animate-[pulse-glow_3s_ease-in-out_infinite]",
         className

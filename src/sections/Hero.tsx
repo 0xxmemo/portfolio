@@ -113,7 +113,7 @@ export function Hero() {
         <div className="flex items-center justify-center gap-3 sm:gap-4 flex-wrap px-4">
           <a
             href="#projects"
-            className="hero-cta px-5 sm:px-8 py-2.5 sm:py-3.5 text-sm sm:text-base rounded-xl bg-cyan-accent/10 border border-cyan-accent/30 text-cyan-accent hover:bg-cyan-accent/20 transition-all duration-300 font-medium backdrop-blur-sm"
+            className="hero-cta px-5 sm:px-8 py-2.5 sm:py-3.5 text-sm sm:text-base rounded-xl bg-accent/10 border border-accent/30 text-accent hover:bg-accent/20 transition-all duration-300 font-medium backdrop-blur-sm"
             style={{ opacity: 0 }}
           >
             View Work

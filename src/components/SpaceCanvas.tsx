@@ -63,7 +63,7 @@ export function SpaceCanvas() {
           x: Math.random() * w,
           y: Math.random() * h,
           r: 150 + Math.random() * 200,
-          hue: 180 + Math.random() * 60, // cyan-blue range
+          hue: 130 + Math.random() * 40, // cyan-blue range
           speed: 0.1 + Math.random() * 0.2,
         });
       }
@@ -74,7 +74,7 @@ export function SpaceCanvas() {
       if (r < 0.6) return "rgba(200, 220, 255, "; // blue-white
       if (r < 0.8) return "rgba(255, 240, 200, "; // warm white
       if (r < 0.9) return "rgba(0, 240, 255, ";   // cyan accent
-      return "rgba(168, 85, 247, ";                 // purple accent
+      return "rgba(16, 185, 129, ";                 // emerald accent
     }
 
     resize();
@@ -109,7 +109,7 @@ export function SpaceCanvas() {
         neb.x += Math.sin(time * neb.speed) * 0.3;
         neb.y += Math.cos(time * neb.speed * 0.7) * 0.2;
 
-        // Shift hue based on scroll (cyan → purple → green → gold)
+        // Shift hue based on scroll (emerald shades)
         const hueShift = scrollP * 120;
         const hue = (neb.hue + hueShift) % 360;
 

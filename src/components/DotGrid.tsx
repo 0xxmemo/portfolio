@@ -35,7 +35,7 @@ export function DotGrid({ rows = 11, cols = 11 }: { rows?: number; cols?: number
       {Array.from({ length: rows * cols }).map((_, i) => (
         <div
           key={i}
-          className="grid-dot w-1.5 h-1.5 rounded-full bg-cyan-accent/50"
+          className="grid-dot w-1.5 h-1.5 rounded-full bg-emerald-500/50"
         />
       ))}
     </div>

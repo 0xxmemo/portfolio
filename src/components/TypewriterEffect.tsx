@@ -39,7 +39,7 @@ export function TypewriterEffect({ words, className = "" }: Props) {
   return (
     <span className={className}>
       {text}
-      <span className="inline-block w-[3px] h-[1em] bg-cyan-accent ml-1 align-middle animate-pulse" />
+      <span className="inline-block w-[3px] h-[1em] bg-accent ml-1 align-middle animate-pulse" />
     </span>
   );
 }

@@ -73,11 +73,11 @@ export function Contact({ isActive = false }: { isActive?: boolean }) {
 
         <p className="contact-links mt-8 text-white/20 text-xs sm:text-sm px-4" style={{ opacity: 0 }}>
           or reach out on{" "}
-          <a href="https://x.com/0xxmemo" target="_blank" rel="noopener noreferrer" className="text-cyan-accent/50 hover:text-cyan-accent transition-colors">
+          <a href="https://x.com/0xxmemo" target="_blank" rel="noopener noreferrer" className="text-accent/50 hover:text-accent transition-colors">
             Twitter
           </a>{" "}
           ·{" "}
-          <a href="https://t.me/x0memo" target="_blank" rel="noopener noreferrer" className="text-cyan-accent/50 hover:text-cyan-accent transition-colors">
+          <a href="https://t.me/x0memo" target="_blank" rel="noopener noreferrer" className="text-accent/50 hover:text-accent transition-colors">
             Telegram
           </a>
         </p>

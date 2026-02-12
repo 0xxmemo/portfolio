@@ -72,7 +72,7 @@ export function Dock({ items }: Props) {
             href={item.href}
             className={cn(
               "dock-item relative flex items-center justify-center w-11 h-11 rounded-xl",
-              "bg-white/5 hover:bg-white/10 text-white/60 hover:text-cyan-accent",
+              "bg-white/5 hover:bg-white/10 text-white/60 hover:text-accent",
               "transition-colors group"
             )}
             title={item.label}

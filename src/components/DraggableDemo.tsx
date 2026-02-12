@@ -28,9 +28,9 @@ export function DraggableDemo() {
         <span className="text-white/10 text-sm">drag me around</span>
       </div>
       {[
-        { color: "bg-cyan-accent/60", x: "20%", y: "30%" },
-        { color: "bg-purple-accent/60", x: "50%", y: "50%" },
-        { color: "bg-amber-400/60", x: "70%", y: "25%" },
+        { color: "bg-emerald-500/60", x: "20%", y: "30%" },
+        { color: "bg-emerald-600/60", x: "50%", y: "50%" },
+        { color: "bg-emerald-400/60", x: "70%", y: "25%" },
       ].map((c, i) => (
         <div
           key={i}

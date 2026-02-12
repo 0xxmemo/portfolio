@@ -51,7 +51,7 @@ export function Links({ isActive = false }: { isActive?: boolean }) {
       <div className="w-full">
         <h2 
           className="section-header text-[10px] sm:text-xs font-mono mb-8 sm:mb-10 md:mb-12 tracking-[0.2em] sm:tracking-[0.3em] uppercase"
-          style={{ color: "#ec4899", opacity: 0 }}
+          style={{ color: "#059669", opacity: 0 }}
         >
           // Connect
         </h2>

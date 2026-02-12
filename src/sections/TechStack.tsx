@@ -14,8 +14,8 @@ const techRow2 = [
 
 function TechPill({ name }: { name: string }) {
   return (
-    <div className="flex items-center gap-2 px-3 sm:px-4 py-1.5 sm:py-2 rounded-full bg-white/[0.05] border border-white/[0.15] text-white/70 text-xs sm:text-sm whitespace-nowrap hover:border-orange-500/40 hover:text-orange-400/90 transition-all duration-300">
-      <div className="w-1.5 h-1.5 sm:w-2 sm:h-2 rounded-full bg-gradient-to-r from-orange-500/60 to-amber-500/60" />
+    <div className="flex items-center gap-2 px-3 sm:px-4 py-1.5 sm:py-2 rounded-full bg-white/[0.05] border border-white/[0.15] text-white/70 text-xs sm:text-sm whitespace-nowrap hover:border-emerald-500/40 hover:text-emerald-400/90 transition-all duration-300">
+      <div className="w-1.5 h-1.5 sm:w-2 sm:h-2 rounded-full bg-gradient-to-r from-emerald-500/60 to-emerald-400/60" />
       {name}
     </div>
   );
@@ -65,7 +65,7 @@ export function TechStack({ isActive }: { isActive?: boolean }) {
       <div className="w-full">
         <h2 
           className="section-header text-[10px] sm:text-xs font-mono mb-8 sm:mb-10 md:mb-12 tracking-[0.2em] sm:tracking-[0.3em] uppercase"
-          style={{ color: "#f97316", opacity: 0 }}
+          style={{ color: "#6ee7b7", opacity: 0 }}
         >
           // Tech Stack
         </h2>
