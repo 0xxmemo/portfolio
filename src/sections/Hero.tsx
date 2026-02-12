@@ -103,7 +103,7 @@ export function Hero() {
           <TypewriterEffect
             words={[
               "Software Architect & Engineer",
-              "Senior Fullstack Lead @ Inverter",
+              "Senior Fullstack Lead @ Floors",
               "Building the Onchain Future",
               "Web3 Builder from 🇹🇷 in 🇵🇪",
             ]}
