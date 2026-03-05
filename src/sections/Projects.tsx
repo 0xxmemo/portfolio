@@ -153,6 +153,14 @@ const projects: Project[] = [
     logo: "/logos/solana.png",
     category: "tools" 
   },
+  { 
+    title: "LiquidCN", 
+    description: "Liquid Glass CN with secret sauce — Apple-inspired liquid glass UI components built on shadcn/ui, Radix primitives, and Motion. Smooth, accessible, and ready for Next.js.", 
+    tags: ["TypeScript", "shadcn/ui", "React", "Motion"], 
+    url: "https://github.com/mguleryuz/liquidcn", 
+    logo: "/logos/liquidcn.svg",
+    category: "tools" 
+  },
 ];
 
 const categories = [
