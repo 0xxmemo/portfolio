@@ -1,10 +1,11 @@
+import { StrictMode } from "react";
 import { SpaceCanvas } from "./components/SpaceCanvas";
 import { ScrollShowcase } from "./components/ScrollShowcase";
 import { Hero } from "./sections/Hero";
 
 export default function App() {
   return (
-    <>
+    <StrictMode>
       <SpaceCanvas />
 
       <main className="relative z-10">
@@ -17,6 +18,6 @@ export default function App() {
           © {new Date().getFullYear()} 0xMemo · Built with passion
         </footer>
       </main>
-    </>
+    </StrictMode>
   );
 }
