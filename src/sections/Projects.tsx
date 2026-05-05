@@ -17,6 +17,8 @@ interface Project {
   url: string;
   logo?: string;
   category: "featured" | "sdk" | "tools";
+  /** Site down — show card but do not link out */
+  linkDisabled?: boolean;
 }
 
 const projects: Project[] = [
@@ -43,7 +45,8 @@ const projects: Project[] = [
     tags: ["InfoFi", "Base", "Analytics", "AI Agent"], 
     url: "https://breadcrumb.cash", 
     logo: "/logos/breadcrumb.ico", 
-    category: "featured" 
+    category: "featured",
+    linkDisabled: true,
   },
   { 
     title: "Levr", 
@@ -51,7 +54,8 @@ const projects: Project[] = [
     tags: ["Base", "BNB", "Launchpad", "Solidity"], 
     url: "https://levr.world", 
     logo: "/logos/levr.ico",
-    category: "featured" 
+    category: "featured",
+    linkDisabled: true,
   },
   
   // SDKs & Libraries
@@ -288,15 +292,15 @@ export function Projects({ isActive }: { isActive?: boolean }) {
             pagination={{ clickable: true }}
             className="w-full max-w-sm sm:max-w-md md:max-w-lg !pb-12 swiper-cards-stack"
           >
-            {filteredProjects.map((project) => (
-              <SwiperSlide key={project.title}>
-                <a
-                  href={project.url}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="block bg-[#0a0a0a] border border-white/15 rounded-2xl p-6 h-[400px] flex flex-col hover:border-emerald-500/30 transition-all duration-300 group"
-                >
-                  {/* Logo */}
+            {filteredProjects.map((project) => {
+              const cardClass =
+                "block bg-[#0a0a0a] border border-white/15 rounded-2xl p-6 h-[400px] flex flex-col transition-all duration-300" +
+                (project.linkDisabled
+                  ? " cursor-default opacity-95"
+                  : " hover:border-emerald-500/30 group");
+
+              const inner = (
+                <>
                   <div className="mb-4">
                     {project.logo ? (
                       <img 
@@ -313,20 +317,25 @@ export function Projects({ isActive }: { isActive?: boolean }) {
                     )}
                   </div>
 
-                  {/* Title */}
                   <div className="flex items-start justify-between gap-2 mb-2">
-                    <h3 className="text-lg font-semibold text-white group-hover:text-emerald-400 transition-colors">
+                    <h3
+                      className={
+                        project.linkDisabled
+                          ? "text-lg font-semibold text-white"
+                          : "text-lg font-semibold text-white group-hover:text-emerald-400 transition-colors"
+                      }
+                    >
                       {project.title}
                     </h3>
-                    <IconExternalLink className="w-4 h-4 text-white/30 group-hover:text-white/60 transition-colors flex-shrink-0" />
+                    {!project.linkDisabled && (
+                      <IconExternalLink className="w-4 h-4 text-white/30 group-hover:text-white/60 transition-colors flex-shrink-0" />
+                    )}
                   </div>
 
-                  {/* Description */}
                   <p className="text-white/60 leading-relaxed mb-auto text-sm">
                     {project.description}
                   </p>
 
-                  {/* Tags */}
                   <div className="flex flex-wrap gap-2 mt-4">
                     {project.tags.slice(0, 4).map((tag) => (
                       <span 
@@ -342,9 +351,31 @@ export function Projects({ isActive }: { isActive?: boolean }) {
                       </span>
                     )}
                   </div>
-                </a>
-              </SwiperSlide>
-            ))}
+                </>
+              );
+
+              return (
+                <SwiperSlide key={project.title}>
+                  {project.linkDisabled ? (
+                    <div
+                      className={cardClass}
+                      aria-label={`${project.title} — link unavailable`}
+                    >
+                      {inner}
+                    </div>
+                  ) : (
+                    <a
+                      href={project.url}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className={cardClass}
+                    >
+                      {inner}
+                    </a>
+                  )}
+                </SwiperSlide>
+              );
+            })}
           </Swiper>
         </div>
       </div>
