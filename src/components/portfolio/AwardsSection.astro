@@ -1,5 +1,9 @@
 ---
 import { awards } from "../../data/portfolio";
+
+const oddTotal = awards.length % 2 === 1;
+const cardClasses =
+  "relative overflow-hidden block group transition-all duration-300 bg-white/[0.04] border border-white/[0.12] rounded-2xl p-4 sm:p-5 flex items-center gap-3 sm:gap-4 hover:border-emerald-500/30 hover:shadow-[0_0_25px_rgba(16,185,129,0.08)]";
 ---
 
 <section id="section-awards" class="min-h-[60vh] flex items-center" style="opacity: 0">
@@ -13,12 +17,18 @@ import { awards } from "../../data/portfolio";
 
     <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 sm:gap-4 mt-8">
       {
-        awards.map((award) => (
-          <div class="award-card" style="opacity: 0">
-            <div
-              data-glow-card
-              class="relative overflow-hidden group transition-all duration-300 bg-white/[0.04] border border-white/[0.12] rounded-2xl p-4 sm:p-5 flex items-center gap-3 sm:gap-4 hover:border-emerald-500/30 hover:shadow-[0_0_25px_rgba(16,185,129,0.08)]"
-            >
+        awards.map((award, i) => {
+          const isLast = i === awards.length - 1;
+          const oddLast = isLast && oddTotal;
+          const wrapperClass = [
+            "award-card",
+            oddLast ? "sm:col-span-2 sm:max-w-[calc(50%-0.5rem)] sm:w-full sm:mx-auto" : "",
+          ]
+            .filter(Boolean)
+            .join(" ");
+
+          const inner = (
+            <>
               <div
                 class="pointer-events-none absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500"
                 style="background: radial-gradient(400px circle at var(--gx, 50%) var(--gy, 50%), rgba(16,185,129,0.08), transparent 40%)"
@@ -32,9 +42,29 @@ import { awards } from "../../data/portfolio";
                 <h3 class="font-semibold text-white text-sm sm:text-base">{award.title}</h3>
                 <p class="text-xs sm:text-sm text-white/50">{award.subtitle}</p>
               </div>
+            </>
+          );
+
+          return (
+            <div class={wrapperClass} style="opacity: 0">
+              {award.url ? (
+                <a
+                  href={award.url}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  data-glow-card
+                  class={cardClasses}
+                >
+                  {inner}
+                </a>
+              ) : (
+                <div data-glow-card class={cardClasses}>
+                  {inner}
+                </div>
+              )}
             </div>
-          </div>
-        ))
+          );
+        })
       }
     </div>
   </div>

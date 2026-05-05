@@ -244,26 +244,42 @@ export const experiences: Experience[] = [
   },
 ];
 
-export const awards = [
+export interface Award {
+  title: string;
+  subtitle: string;
+  logo: string;
+  url?: string;
+}
+
+export const awards: Award[] = [
   {
     title: "ETH Global Istanbul",
     subtitle: "Hackathon Winner — Scroll, ChainLink, Safe, ENS",
     logo: "/logos/ethglobal.png",
+    url: "https://ethglobal.com/events/istanbul",
   },
   {
     title: "Solana Demo Day",
     subtitle: "Winner — Superteam",
     logo: "/logos/solana-award.png",
+    url: "https://superteam.fun/",
   },
   {
     title: "Solana Turkey Grant",
     subtitle: "Grant Recipient — Superteam",
     logo: "/logos/solana-award.png",
+    url: "https://superteam.fun/",
   },
   {
     title: "Base Builder Grant",
     subtitle: "Levr — Coinbase Base Ecosystem",
     logo: "/logos/base.png",
+  },
+  {
+    title: "Summer Bootcamp Finalist",
+    subtitle: "Lbank Labs",
+    logo: "/logos/lbanklabs.png",
+    url: "https://www.lbanklabs.com/",
   },
 ];
 
