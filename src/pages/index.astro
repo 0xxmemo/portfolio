@@ -2,8 +2,6 @@
 import Layout from "../layouts/Layout.astro";
 import Hero from "../components/portfolio/Hero.astro";
 import ScrollShowcase from "../components/portfolio/ScrollShowcase.astro";
-
-const year = new Date().getFullYear();
 ---
 
 <Layout>
@@ -14,9 +12,6 @@ const year = new Date().getFullYear();
       <article>
         <ScrollShowcase />
       </article>
-      <footer class="py-8 sm:py-12 text-center text-white/20 text-xs sm:text-sm px-4">
-        © {year} 0xMemo · Built with passion
-      </footer>
     </main>
   </div>
 </Layout>
