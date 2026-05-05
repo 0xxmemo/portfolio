@@ -1,0 +1,77 @@
+#!/usr/bin/env bash
+# Render resume.html → resume.pdf (overwrites the root PDF) using headless Chrome.
+# Honors the @media print rules in resume.html.
+
+set -euo pipefail
+
+ROOT="$(cd "$(dirname "$0")/.." && pwd)"
+HTML="$ROOT/resume.html"
+PDF="$ROOT/resume.pdf"
+
+if [[ ! -f "$HTML" ]]; then
+  echo "resume.html not found at $HTML" >&2
+  exit 1
+fi
+
+CHROME="${CHROME:-}"
+if [[ -z "$CHROME" ]]; then
+  for c in \
+    "/Applications/Google Chrome.app/Contents/MacOS/Google Chrome" \
+    "/Applications/Chromium.app/Contents/MacOS/Chromium" \
+    "/Applications/Microsoft Edge.app/Contents/MacOS/Microsoft Edge" \
+    "/Applications/Brave Browser.app/Contents/MacOS/Brave Browser" \
+    "/Applications/Arc.app/Contents/MacOS/Arc"; do
+    if [[ -x "$c" ]]; then CHROME="$c"; break; fi
+  done
+fi
+if [[ -z "$CHROME" ]]; then
+  for bin in chromium google-chrome chrome; do
+    if command -v "$bin" >/dev/null 2>&1; then CHROME="$(command -v "$bin")"; break; fi
+  done
+fi
+if [[ -z "$CHROME" ]]; then
+  echo "No Chromium-based browser found. Install Chrome or set CHROME=/path/to/binary." >&2
+  exit 1
+fi
+
+PROFILE="$(mktemp -d)"
+# Force a fresh write: remove any stale file so we can detect creation reliably.
+rm -f "$PDF"
+
+cleanup() {
+  [[ -n "${CHROME_PID:-}" ]] && kill -TERM "$CHROME_PID" 2>/dev/null || true
+  rm -rf "$PROFILE" 2>/dev/null || true
+}
+trap cleanup EXIT
+
+"$CHROME" \
+  --headless=new \
+  --disable-gpu \
+  --no-pdf-header-footer \
+  --hide-scrollbars \
+  --user-data-dir="$PROFILE" \
+  --print-to-pdf="$PDF" \
+  --print-to-pdf-no-header \
+  "file://$HTML" >/dev/null 2>&1 &
+CHROME_PID=$!
+
+# Chrome writes the PDF quickly, but its main process can linger 30+s on cleanup.
+# Poll for the file, then for size-stability, then kill the leftover Chrome.
+DEADLINE=$(( $(date +%s) + 30 ))
+while [[ $(date +%s) -lt $DEADLINE ]]; do
+  if [[ -s "$PDF" ]]; then
+    s1=$(wc -c < "$PDF" | tr -d ' ')
+    sleep 0.2
+    s2=$(wc -c < "$PDF" | tr -d ' ')
+    [[ "$s1" == "$s2" && "$s1" -gt 0 ]] && break
+  fi
+  sleep 0.1
+done
+
+if [[ ! -s "$PDF" ]]; then
+  echo "PDF was not produced within 30s" >&2
+  exit 1
+fi
+
+SIZE=$(wc -c < "$PDF" | tr -d ' ')
+echo "wrote $PDF (${SIZE} bytes) — using $(basename "$CHROME")"
