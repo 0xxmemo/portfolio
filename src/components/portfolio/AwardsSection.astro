@@ -1,0 +1,41 @@
+---
+import { awards } from "../../data/portfolio";
+---
+
+<section id="section-awards" class="min-h-[60vh] flex items-center" style="opacity: 0">
+  <div class="w-full">
+    <h2
+      class="section-header text-[10px] sm:text-xs font-mono mb-8 sm:mb-10 md:mb-12 tracking-[0.2em] sm:tracking-[0.3em] uppercase"
+      style="color: #10b981; opacity: 0"
+    >
+      // Awards & Grants
+    </h2>
+
+    <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 sm:gap-4 mt-8">
+      {
+        awards.map((award) => (
+          <div class="award-card" style="opacity: 0">
+            <div
+              data-glow-card
+              class="relative overflow-hidden group transition-all duration-300 bg-white/[0.04] border border-white/[0.12] rounded-2xl p-4 sm:p-5 flex items-center gap-3 sm:gap-4 hover:border-emerald-500/30 hover:shadow-[0_0_25px_rgba(16,185,129,0.08)]"
+            >
+              <div
+                class="pointer-events-none absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500"
+                style="background: radial-gradient(400px circle at var(--gx, 50%) var(--gy, 50%), rgba(16,185,129,0.08), transparent 40%)"
+              />
+              <img
+                src={award.logo}
+                alt={award.title}
+                class="w-10 h-10 sm:w-12 sm:h-12 rounded-lg object-contain shrink-0 relative z-10"
+              />
+              <div class="relative z-10">
+                <h3 class="font-semibold text-white text-sm sm:text-base">{award.title}</h3>
+                <p class="text-xs sm:text-sm text-white/50">{award.subtitle}</p>
+              </div>
+            </div>
+          </div>
+        ))
+      }
+    </div>
+  </div>
+</section>

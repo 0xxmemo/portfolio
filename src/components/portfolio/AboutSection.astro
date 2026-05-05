@@ -1,0 +1,71 @@
+---
+import { iconMapPin } from "../../data/social-icons";
+---
+
+<section id="section-about" class="min-h-[60vh] flex items-center" style="opacity: 0">
+  <div class="w-full">
+    <h2
+      class="section-header text-[10px] sm:text-xs font-mono mb-8 sm:mb-10 md:mb-12 tracking-[0.2em] sm:tracking-[0.3em] uppercase"
+      style="color: #10b981; opacity: 0"
+    >
+      // About
+    </h2>
+
+    <div class="about-card mt-8" style="opacity: 0">
+      <div
+        data-glow-card
+        class="relative overflow-hidden group transition-all duration-300 p-6 sm:p-10 bg-white/[0.02] border-white/[0.08] rounded-2xl"
+      >
+        <div
+          class="pointer-events-none absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500"
+          style="background: radial-gradient(400px circle at var(--gx, 50%) var(--gy, 50%), rgba(16,185,129,0.08), transparent 40%)"
+        />
+        <div class="relative z-10 flex flex-col sm:flex-row gap-8 items-start">
+          <div class="shrink-0 mx-auto sm:mx-0">
+            <div class="relative w-32 h-32 sm:w-40 sm:h-40">
+              <div class="absolute inset-0 rounded-full bg-gradient-to-br from-accent/30 to-accent-dark/30 blur-xl"></div>
+              <img
+                src="/profile.jpg"
+                alt="0xMemo - Mehmet Guleryuz"
+                class="about-profile-img relative w-full h-full rounded-full object-cover border-2 border-accent/30"
+                style="opacity: 0"
+              />
+            </div>
+          </div>
+
+          <div class="space-y-6 flex-1">
+            <div class="flex items-center gap-2 text-white/40 text-sm">
+              <span set:html={iconMapPin} />
+              <span>Cusco, Peru · Turkish origin</span>
+            </div>
+
+            <p class="text-base sm:text-lg md:text-xl text-white/90 leading-relaxed">
+              Senior Software Engineer & Architect with 7 years of experience building infrastructure for decentralized systems.
+              Currently leading full-stack development at{" "}
+              <a href="https://www.floors.finance/" target="_blank" rel="noopener noreferrer" class="text-accent hover:underline">
+                Floor Markets
+              </a>
+              , building a leveraged DeFi protocol with built-in floor protection — no liquidations, no interest.
+            </p>
+
+            <p class="text-sm sm:text-base text-white/60 leading-relaxed">
+              Previously led SDK architecture at Inverter Network and shipped a cross-chain payment gateway as founding engineer at
+              Crossify. Attended Koç University — ETH Global Istanbul winner, Solana grant recipient, Base Builder grantee. I build things
+              that ship.
+            </p>
+
+            <div class="flex flex-wrap gap-3 pt-4">
+              {
+                ["Solidity", "TypeScript", "Go", "Python", "Bun", "React"].map((tag) => (
+                  <span class="about-tag px-3 py-1.5 text-sm rounded-full bg-white/5 border border-white/10 text-white/50" style="opacity: 0">
+                    {tag}
+                  </span>
+                ))
+              }
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

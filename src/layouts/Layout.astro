@@ -1,0 +1,97 @@
+---
+import '../index.css';
+import 'swiper/css';
+import 'swiper/css/pagination';
+import '../lib/swiper-effects/effect-cards-stack.css';
+
+const jsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'Person',
+  name: 'Mehmet Guleryuz',
+  alternateName: '0xMemo',
+  url: 'https://0xmemo.com',
+  image: 'https://0xmemo.com/profile.jpg',
+  jobTitle: 'Fullstack Lead',
+  worksFor: {
+    '@type': 'Organization',
+    name: 'Floor Markets',
+    url: 'https://floors.finance',
+  },
+  alumniOf: {
+    '@type': 'EducationalOrganization',
+    name: 'Koc University',
+  },
+  address: {
+    '@type': 'PostalAddress',
+    addressLocality: 'Cusco',
+    addressCountry: 'PE',
+  },
+  sameAs: [
+    'https://x.com/0xxmemo',
+    'https://github.com/mguleryuz',
+    'https://www.linkedin.com/in/mehmet-guleryuz-9a7381206/',
+    'https://medium.com/@0xxmemo',
+    'https://t.me/x0memo',
+    'https://zora.co/@0xmemo',
+  ],
+  knowsAbout: [
+    'Blockchain Development',
+    'Web3',
+    'Ethereum',
+    'Solidity',
+    'TypeScript',
+    'React',
+    'Next.js',
+    'Software Architecture',
+    'Full-Stack Development',
+  ],
+  description:
+    'Fullstack Lead at Floor Markets. Building decentralized systems, SDKs, and developer tools across Ethereum, Base, and beyond.',
+};
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/jpeg" href="/favicon.jpg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <title>0xMemo — Software Architect & Blockchain Builder</title>
+    <meta name="title" content="0xMemo — Software Architect & Blockchain Builder" />
+    <meta
+      name="description"
+      content="Fullstack Lead at Floor Markets. Building decentralized systems, SDKs, and developer tools across Ethereum, Base, and beyond."
+    />
+    <meta name="author" content="Mehmet Guleryuz" />
+    <meta
+      name="keywords"
+      content="blockchain developer, web3, ethereum, solidity, typescript, react, software architect, fullstack developer, floor markets, inverter network, breadcrumb, 0xmemo"
+    />
+
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://0xmemo.com/" />
+    <meta property="og:title" content="0xMemo — Software Architect & Blockchain Builder" />
+    <meta
+      property="og:description"
+      content="Fullstack Lead at Floor Markets. Building decentralized systems, SDKs, and developer tools across Ethereum, Base, and beyond."
+    />
+    <meta property="og:image" content="https://0xmemo.com/profile.jpg" />
+
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:url" content="https://0xmemo.com/" />
+    <meta name="twitter:site" content="@0xxmemo" />
+    <meta name="twitter:creator" content="@0xxmemo" />
+    <meta name="twitter:title" content="0xMemo — Software Architect & Blockchain Builder" />
+    <meta
+      name="twitter:description"
+      content="Fullstack Lead at Floor Markets. Building decentralized systems, SDKs, and developer tools across Ethereum, Base, and beyond."
+    />
+    <meta name="twitter:image" content="https://0xmemo.com/profile.jpg" />
+
+    <script type="application/ld+json" set:html={JSON.stringify(jsonLd)} />
+  </head>
+  <body>
+    <slot />
+  </body>
+</html>

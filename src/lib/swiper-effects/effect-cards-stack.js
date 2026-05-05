@@ -79,14 +79,12 @@ export default function EffectCardsStack({ swiper, on, extendParams }) {
         rotateY = -rotateY;
       }
 
-      /* eslint-disable */
       const transform = `
         translate3d(${tX}, ${tY}, ${tZ})
         scale(${1})
         rotateX(${rotateX}deg)
         rotateY(${rotateY}deg)
       `;
-      /* eslint-enable */
 
       if (params.slideShadows) {
         // Set shadows
