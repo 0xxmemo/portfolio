@@ -10,8 +10,9 @@ import {
 const TYPEWRITER_WORDS = [
   "Software Architect & Engineer",
   "Senior Fullstack Lead @ Floors",
-  "Building the Onchain Future",
-  "Web3 Builder from 🇹🇷 in 🇵🇪",
+  "At the Intersection of Crypto & AI",
+  "Shipping Agents, Proxies & Onchain Systems",
+  "Builder from 🇹🇷 based in 🇵🇪",
 ];
 
 export function initHero(): void {
