@@ -1,0 +1,40 @@
+---
+import { socialLinks } from "../../data/portfolio";
+import { socialIconSvg } from "../../data/social-icons";
+---
+
+<section id="section-links" class="min-h-[60vh] flex items-center" style="opacity: 0">
+  <div class="w-full">
+    <h2
+      class="section-header text-[10px] sm:text-xs font-mono mb-8 sm:mb-10 md:mb-12 tracking-[0.2em] sm:tracking-[0.3em] uppercase"
+      style="color: #059669; opacity: 0"
+    >
+      // Connect
+    </h2>
+
+    <div class="grid grid-cols-2 sm:grid-cols-3 gap-3 sm:gap-4 md:gap-5">
+      {
+        socialLinks.map((link) => (
+          <a href={link.url} target="_blank" rel="noopener noreferrer" class="link-card" style="opacity: 0">
+            <div
+              data-glow-card
+              class:list={[
+                "relative overflow-hidden group transition-all duration-300 p-4 sm:p-5 md:p-6 flex flex-col items-center gap-2 sm:gap-3 text-white/40 cursor-pointer rounded-2xl",
+                "bg-white/[0.04] border border-white/[0.12] hover:border-emerald-500/30",
+                link.color,
+                "duration-300",
+              ]}
+            >
+              <div
+                class="pointer-events-none absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500"
+                style="background: radial-gradient(400px circle at var(--gx, 50%) var(--gy, 50%), rgba(16,185,129,0.08), transparent 40%)"
+              />
+              <div class="relative z-10 text-xl sm:text-2xl" set:html={socialIconSvg[link.icon]} />
+              <span class="relative z-10 text-xs sm:text-sm font-medium text-center">{link.name}</span>
+            </div>
+          </a>
+        ))
+      }
+    </div>
+  </div>
+</section>

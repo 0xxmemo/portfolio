@@ -1,0 +1,38 @@
+---
+import { iconCalendar } from "../../data/social-icons";
+---
+
+<section id="section-contact" class="min-h-[60vh] flex items-center" style="opacity: 0">
+  <div class="w-full text-center">
+    <h2 class="contact-heading text-2xl sm:text-3xl md:text-4xl font-bold text-white mb-4" style="opacity: 0">Let's Build Together</h2>
+    <p class="contact-subtitle text-white/40 mb-8 sm:mb-10 text-sm sm:text-base md:text-lg px-4" style="opacity: 0">
+      Open to collaborations, consulting, and interesting conversations about the future of decentralized systems.
+    </p>
+
+    <div class="contact-cta" style="opacity: 0">
+      <a
+        href="https://calendar.app.google/PDhuEYSbAo4Nbc1Y6"
+        target="_blank"
+        rel="noopener noreferrer"
+        class="relative inline-flex items-center justify-center px-5 sm:px-8 py-3 sm:py-4 text-sm sm:text-base rounded-xl font-semibold text-white overflow-hidden bg-gradient-to-r from-accent/20 to-accent-dark/20 border border-accent/30 hover:border-accent/60 transition-all duration-300 group animate-[pulse-glow_3s_ease-in-out_infinite]"
+      >
+        <span class="absolute inset-0 bg-gradient-to-r from-transparent via-white/10 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-1000"></span>
+        <span class="relative z-10 inline-flex items-center">
+          <span set:html={iconCalendar} />
+          Schedule a Meeting
+        </span>
+      </a>
+    </div>
+
+    <p class="contact-links mt-8 text-white/20 text-xs sm:text-sm px-4" style="opacity: 0">
+      or reach out on{" "}
+      <a href="https://x.com/0xxmemo" target="_blank" rel="noopener noreferrer" class="text-accent/50 hover:text-accent transition-colors">
+        Twitter
+      </a>{" "}
+      ·{" "}
+      <a href="https://t.me/x0memo" target="_blank" rel="noopener noreferrer" class="text-accent/50 hover:text-accent transition-colors">
+        Telegram
+      </a>
+    </p>
+  </div>
+</section>

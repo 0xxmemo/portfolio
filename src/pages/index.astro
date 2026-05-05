@@ -1,10 +1,26 @@
 ---
-import Layout from '../layouts/Layout.astro';
-import App from '../App';
+import Layout from "../layouts/Layout.astro";
+import Hero from "../components/portfolio/Hero.astro";
+import ScrollShowcase from "../components/portfolio/ScrollShowcase.astro";
+
+const year = new Date().getFullYear();
 ---
 
 <Layout>
   <div class="app-root">
-    <App client:load />
+    <canvas data-space-canvas class="pointer-events-none fixed inset-0 z-[1]"></canvas>
+    <main class="relative z-10">
+      <Hero />
+      <article>
+        <ScrollShowcase />
+      </article>
+      <footer class="py-8 sm:py-12 text-center text-white/20 text-xs sm:text-sm px-4">
+        © {year} 0xMemo · Built with passion
+      </footer>
+    </main>
   </div>
 </Layout>
+
+<script>
+  import "../scripts/client.ts";
+</script>

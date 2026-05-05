@@ -1,0 +1,61 @@
+---
+import { experiences, colorForLetter } from "../../data/portfolio";
+---
+
+<section id="section-experience" class="min-h-[60vh] flex items-center" style="opacity: 0">
+  <div class="w-full">
+    <h2
+      class="section-header text-[10px] sm:text-xs font-mono mb-8 sm:mb-10 md:mb-12 tracking-[0.2em] sm:tracking-[0.3em] uppercase"
+      style="color: #059669; opacity: 0"
+    >
+      // Experience
+    </h2>
+
+    <div class="swiper-container flex justify-center" style="opacity: 0">
+      <div class="swiper swiper-experience w-full max-w-sm sm:max-w-md md:max-w-lg !pb-12 swiper-cards-stack">
+        <div class="swiper-wrapper">
+          {
+            experiences.map((exp) => (
+              <div class="swiper-slide">
+                <div class="bg-[#0a0a0a] border border-white/15 rounded-2xl p-6 h-[400px] flex flex-col hover:border-emerald-500/30 transition-all duration-300">
+                  <div class="mb-4">
+                    {exp.logo ? (
+                      <img src={exp.logo} class="w-8 h-8 rounded object-contain" alt={exp.company} />
+                    ) : (
+                      <div
+                        class={`w-8 h-8 rounded-full flex items-center justify-center text-sm font-bold border ${colorForLetter(exp.company[0] ?? "X")}`}
+                      >
+                        {exp.company[0]}
+                      </div>
+                    )}
+                  </div>
+                  <h3 class="text-lg font-semibold text-white mb-1">{exp.title}</h3>
+                  {exp.url ? (
+                    <a
+                      href={exp.url}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      class="text-accent-dark hover:underline mb-2 inline-block"
+                    >
+                      {exp.company}
+                    </a>
+                  ) : (
+                    <span class="text-white/70 mb-2 block">{exp.company}</span>
+                  )}
+                  <p class="text-xs text-white/40 mb-4 font-mono">{exp.period}</p>
+                  <p class="text-white/60 leading-relaxed mb-auto text-sm">{exp.description}</p>
+                  <div class="flex flex-wrap gap-2 mt-4">
+                    {exp.tags.map((tag) => (
+                      <span class="px-2.5 py-1 text-xs rounded-full bg-white/5 border border-white/10 text-white/40">{tag}</span>
+                    ))}
+                  </div>
+                </div>
+              </div>
+            ))
+          }
+        </div>
+        <div class="swiper-pagination"></div>
+      </div>
+    </div>
+  </div>
+</section>

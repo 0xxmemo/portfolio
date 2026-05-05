@@ -11,6 +11,9 @@ node_modules
 dist
 dist-ssr
 .astro
+package-lock.json
+pnpm-lock.yaml
+yarn.lock
 *.local
 
 # Editor directories and files

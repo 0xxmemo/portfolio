@@ -1,0 +1,131 @@
+---
+import { projects, projectCategories, colorForLetter } from "../../data/portfolio";
+import { iconExternalLink } from "../../data/social-icons";
+---
+
+<section id="section-projects" class="min-h-[60vh] flex items-center" style="opacity: 0">
+  <div class="w-full">
+    <h2
+      class="section-header text-[10px] sm:text-xs font-mono mb-8 sm:mb-10 md:mb-12 tracking-[0.2em] sm:tracking-[0.3em] uppercase"
+      style="color: #34d399; opacity: 0"
+    >
+      // Projects
+    </h2>
+
+    <div class="flex gap-2 sm:gap-3 mb-6 sm:mb-8 overflow-x-auto pb-2 scrollbar-hide">
+      {
+        projectCategories.map((cat, i) => (
+          <button
+            type="button"
+            data-project-cat={cat.id}
+            class:list={[
+              "category-tab px-4 py-2 rounded-lg text-sm font-medium transition-all whitespace-nowrap border",
+              "bg-white/2 text-white/40 border-white/10 hover:bg-white/5 hover:text-white/60",
+              { "is-active": i === 0 },
+            ]}
+            style="opacity: 0"
+          >
+            {cat.label}
+          </button>
+        ))
+      }
+    </div>
+
+    <div class="projects-swiper-fade-wrap swiper-container flex justify-center" style="opacity: 0">
+      <div class="relative w-full max-w-sm sm:max-w-md md:max-w-lg min-h-[420px] pb-12">
+        {
+          projectCategories.map((cat, ci) => {
+            const list = projects.filter((p) => p.category === cat.id);
+            const isHolderActive = ci === 0;
+            return (
+              <div
+                data-projects-holder={cat.id}
+                class:list={[
+                  "absolute inset-x-0 top-0 transition-opacity duration-300",
+                  { "opacity-100 z-10 pointer-events-auto": isHolderActive },
+                  { "opacity-0 z-0 pointer-events-none": !isHolderActive },
+                ]}
+              >
+                <div class:list={["swiper", `swiper-projects-${cat.id}`, "w-full", "!pb-12", "swiper-cards-stack"]}>
+                  <div class="swiper-wrapper">
+                    {list.map((project) => {
+                      const cardBase =
+                        "block bg-[#0a0a0a] border border-white/15 rounded-2xl p-6 h-[400px] flex flex-col transition-all duration-300";
+                      const cardClass = project.linkDisabled
+                        ? `${cardBase} cursor-default opacity-95`
+                        : `${cardBase} hover:border-emerald-500/30 group`;
+
+                      return (
+                        <div class="swiper-slide">
+                          {project.linkDisabled ? (
+                            <div class={cardClass} aria-label={`${project.title} — link unavailable`}>
+                              <div class="mb-4">
+                                {project.logo ? (
+                                  <img src={project.logo} class="w-8 h-8 rounded object-contain" alt={project.title} />
+                                ) : (
+                                  <div
+                                    class={`w-8 h-8 rounded-full flex items-center justify-center text-sm font-bold border ${colorForLetter(project.title[0] ?? "X")}`}
+                                  >
+                                    {project.title[0]}
+                                  </div>
+                                )}
+                              </div>
+                              <div class="flex items-start justify-between gap-2 mb-2">
+                                <h3 class="text-lg font-semibold text-white">{project.title}</h3>
+                              </div>
+                              <p class="text-white/60 leading-relaxed mb-auto text-sm">{project.description}</p>
+                              <div class="flex flex-wrap gap-2 mt-4">
+                                {project.tags.slice(0, 4).map((tag) => (
+                                  <span class="px-2.5 py-1 text-xs rounded-full bg-white/5 border border-white/10 text-white/40">{tag}</span>
+                                ))}
+                                {project.tags.length > 4 && (
+                                  <span class="px-2.5 py-1 text-xs rounded-full bg-white/5 border border-white/10 text-white/40">
+                                    +{project.tags.length - 4}
+                                  </span>
+                                )}
+                              </div>
+                            </div>
+                          ) : (
+                            <a href={project.url} target="_blank" rel="noopener noreferrer" class={cardClass}>
+                              <div class="mb-4">
+                                {project.logo ? (
+                                  <img src={project.logo} class="w-8 h-8 rounded object-contain" alt={project.title} />
+                                ) : (
+                                  <div
+                                    class={`w-8 h-8 rounded-full flex items-center justify-center text-sm font-bold border ${colorForLetter(project.title[0] ?? "X")}`}
+                                  >
+                                    {project.title[0]}
+                                  </div>
+                                )}
+                              </div>
+                              <div class="flex items-start justify-between gap-2 mb-2">
+                                <h3 class="text-lg font-semibold text-white group-hover:text-emerald-400 transition-colors">{project.title}</h3>
+                                <span set:html={iconExternalLink} />
+                              </div>
+                              <p class="text-white/60 leading-relaxed mb-auto text-sm">{project.description}</p>
+                              <div class="flex flex-wrap gap-2 mt-4">
+                                {project.tags.slice(0, 4).map((tag) => (
+                                  <span class="px-2.5 py-1 text-xs rounded-full bg-white/5 border border-white/10 text-white/40">{tag}</span>
+                                ))}
+                                {project.tags.length > 4 && (
+                                  <span class="px-2.5 py-1 text-xs rounded-full bg-white/5 border border-white/10 text-white/40">
+                                    +{project.tags.length - 4}
+                                  </span>
+                                )}
+                              </div>
+                            </a>
+                          )}
+                        </div>
+                      );
+                    })}
+                  </div>
+                  <div class="swiper-pagination" />
+                </div>
+              </div>
+            );
+          })
+        }
+      </div>
+    </div>
+  </div>
+</section>

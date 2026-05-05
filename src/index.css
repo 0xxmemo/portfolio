@@ -100,3 +100,19 @@ body {
 .swiper-pagination-bullet-active {
   background: #10b981 !important;
 }
+
+@keyframes marquee {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(calc(-100%)); }
+}
+
+@keyframes marquee-reverse {
+  0% { transform: translateX(calc(-100%)); }
+  100% { transform: translateX(0); }
+}
+
+.category-tab.is-active {
+  background-color: color-mix(in srgb, var(--color-accent, #10b981) 20%, transparent);
+  color: var(--color-accent, #10b981);
+  border-color: color-mix(in srgb, var(--color-accent, #10b981) 30%, transparent);
+}

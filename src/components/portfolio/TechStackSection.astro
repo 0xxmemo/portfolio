@@ -1,0 +1,81 @@
+---
+import { techRow1, techRow2 } from "../../data/portfolio";
+---
+
+<section id="section-tech" class="min-h-[60vh] flex items-center" style="opacity: 0">
+  <div class="w-full">
+    <h2
+      class="section-header text-[10px] sm:text-xs font-mono mb-8 sm:mb-10 md:mb-12 tracking-[0.2em] sm:tracking-[0.3em] uppercase"
+      style="color: #6ee7b7; opacity: 0"
+    >
+      // Tech Stack
+    </h2>
+
+    <p class="tech-subtitle text-white/40 mt-4 mb-8 text-xs sm:text-sm" style="opacity: 0">
+      Tools & technologies I work with daily
+    </p>
+
+    <div class="techstack-content" style="opacity: 0">
+      <div class="bg-white/[0.02] rounded-2xl border border-white/[0.05] p-4 sm:p-6 md:p-8">
+        <div
+          class="flex overflow-hidden [mask-image:linear-gradient(to_right,transparent,white_10%,white_90%,transparent)] mb-4"
+        >
+          <div
+            class="flex shrink-0 gap-8 items-center pr-8 animate-[marquee_35s_linear_infinite]"
+            style="--duration: 35s"
+          >
+            {
+              techRow1.map((t) => (
+                <div class="flex items-center gap-2 px-3 sm:px-4 py-1.5 sm:py-2 rounded-full bg-white/[0.05] border border-white/[0.15] text-white/70 text-xs sm:text-sm whitespace-nowrap hover:border-emerald-500/40 hover:text-emerald-400/90 transition-all duration-300">
+                  <div class="w-1.5 h-1.5 sm:w-2 sm:h-2 rounded-full bg-gradient-to-r from-emerald-500/60 to-emerald-400/60" />
+                  {t}
+                </div>
+              ))
+            }
+          </div>
+          <div
+            aria-hidden="true"
+            class="flex shrink-0 gap-8 items-center pr-8 animate-[marquee_35s_linear_infinite]"
+          >
+            {
+              techRow1.map((t) => (
+                <div class="flex items-center gap-2 px-3 sm:px-4 py-1.5 sm:py-2 rounded-full bg-white/[0.05] border border-white/[0.15] text-white/70 text-xs sm:text-sm whitespace-nowrap hover:border-emerald-500/40 hover:text-emerald-400/90 transition-all duration-300">
+                  <div class="w-1.5 h-1.5 sm:w-2 sm:h-2 rounded-full bg-gradient-to-r from-emerald-500/60 to-emerald-400/60" />
+                  {t}
+                </div>
+              ))
+            }
+          </div>
+        </div>
+
+        <div class="flex overflow-hidden [mask-image:linear-gradient(to_right,transparent,white_10%,white_90%,transparent)]">
+          <div
+            class="flex shrink-0 gap-8 items-center pr-8 animate-[marquee-reverse_30s_linear_infinite]"
+          >
+            {
+              techRow2.map((t) => (
+                <div class="flex items-center gap-2 px-3 sm:px-4 py-1.5 sm:py-2 rounded-full bg-white/[0.05] border border-white/[0.15] text-white/70 text-xs sm:text-sm whitespace-nowrap hover:border-emerald-500/40 hover:text-emerald-400/90 transition-all duration-300">
+                  <div class="w-1.5 h-1.5 sm:w-2 sm:h-2 rounded-full bg-gradient-to-r from-emerald-500/60 to-emerald-400/60" />
+                  {t}
+                </div>
+              ))
+            }
+          </div>
+          <div
+            aria-hidden="true"
+            class="flex shrink-0 gap-8 items-center pr-8 animate-[marquee-reverse_30s_linear_infinite]"
+          >
+            {
+              techRow2.map((t) => (
+                <div class="flex items-center gap-2 px-3 sm:px-4 py-1.5 sm:py-2 rounded-full bg-white/[0.05] border border-white/[0.15] text-white/70 text-xs sm:text-sm whitespace-nowrap hover:border-emerald-500/40 hover:text-emerald-400/90 transition-all duration-300">
+                  <div class="w-1.5 h-1.5 sm:w-2 sm:h-2 rounded-full bg-gradient-to-r from-emerald-500/60 to-emerald-400/60" />
+                  {t}
+                </div>
+              ))
+            }
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
