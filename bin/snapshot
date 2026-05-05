@@ -1,0 +1,49 @@
+#!/usr/bin/env bash
+# Snapshot the current resume.html into .resume-history/vNNNN.html and log to MANIFEST.md.
+# Usage: bin/snapshot [note]
+
+set -euo pipefail
+
+ROOT="$(cd "$(dirname "$0")/.." && pwd)"
+RESUME="$ROOT/resume.html"
+HISTORY="$ROOT/.resume-history"
+MANIFEST="$HISTORY/MANIFEST.md"
+
+if [[ ! -f "$RESUME" ]]; then
+  echo "resume.html not found at $RESUME" >&2
+  exit 1
+fi
+
+mkdir -p "$HISTORY"
+
+# Skip if the current file is identical to the most recent snapshot
+last_file=$(ls "$HISTORY" 2>/dev/null | grep -E '^v[0-9]+\.html$' | sort -V | tail -1 || true)
+if [[ -n "${last_file:-}" ]] && cmp -s "$RESUME" "$HISTORY/$last_file"; then
+  echo "no changes since $last_file — skipping snapshot"
+  exit 0
+fi
+
+# Compute next version
+last_n=$(echo "${last_file:-v0000.html}" | sed -E 's/^v0*([0-9]+)\.html$/\1/')
+next_n=$(( last_n + 1 ))
+ver=$(printf "v%04d" "$next_n")
+
+cp "$RESUME" "$HISTORY/$ver.html"
+
+if [[ ! -f "$MANIFEST" ]]; then
+  {
+    echo "# Resume History"
+    echo
+    echo "Versioned snapshots of \`resume.html\`. Open one with \`bin/preview-version <N>\`."
+    echo
+    echo "| Version | Timestamp | Note |"
+    echo "|---------|-----------|------|"
+  } > "$MANIFEST"
+fi
+
+ts=$(date "+%Y-%m-%d %H:%M:%S")
+note="${1:-}"
+note_safe="${note//|/\\|}"
+printf "| %s | %s | %s |\n" "$ver" "$ts" "${note_safe:--}" >> "$MANIFEST"
+
+echo "snapshot $ver — $ts${note:+ — $note}"

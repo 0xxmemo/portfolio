@@ -1,0 +1,18 @@
+#!/usr/bin/env bash
+# Print the resume version history.
+set -euo pipefail
+
+ROOT="$(cd "$(dirname "$0")/.." && pwd)"
+HISTORY="$ROOT/.resume-history"
+MANIFEST="$HISTORY/MANIFEST.md"
+
+if [[ ! -d "$HISTORY" ]]; then
+  echo "no history yet — make an edit and run bin/snapshot"
+  exit 0
+fi
+
+if [[ -f "$MANIFEST" ]]; then
+  cat "$MANIFEST"
+else
+  ls "$HISTORY"
+fi

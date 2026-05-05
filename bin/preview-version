@@ -1,0 +1,70 @@
+#!/usr/bin/env bash
+# Open a previously-snapshotted version of the resume in the default browser.
+# Usage:
+#   bin/preview-version <N>   # open .resume-history/vNNNN.html
+#   bin/preview-version       # open the latest snapshot
+#   bin/preview-version --pdf <N>   # render that version to /tmp and open the PDF
+
+set -euo pipefail
+
+ROOT="$(cd "$(dirname "$0")/.." && pwd)"
+HISTORY="$ROOT/.resume-history"
+
+if [[ ! -d "$HISTORY" ]]; then
+  echo "no history yet — make an edit and run bin/snapshot" >&2
+  exit 1
+fi
+
+mode="html"
+if [[ "${1:-}" == "--pdf" ]]; then
+  mode="pdf"
+  shift
+fi
+
+arg="${1:-}"
+if [[ -z "$arg" ]]; then
+  file=$(ls "$HISTORY" 2>/dev/null | grep -E '^v[0-9]+\.html$' | sort -V | tail -1 || true)
+  if [[ -z "$file" ]]; then
+    echo "no snapshots found in $HISTORY" >&2
+    exit 1
+  fi
+else
+  # Accept "5", "v5", or "v0005"
+  n=$(echo "$arg" | sed -E 's/^v0*//')
+  if ! [[ "$n" =~ ^[0-9]+$ ]]; then
+    echo "bad version: $arg" >&2
+    exit 1
+  fi
+  file=$(printf "v%04d.html" "$n")
+fi
+
+src="$HISTORY/$file"
+[[ -f "$src" ]] || { echo "no such snapshot: $file" >&2; exit 1; }
+
+if [[ "$mode" == "html" ]]; then
+  echo "opening $file"
+  open "$src"
+else
+  pdf="/tmp/${file%.html}.pdf"
+  staging="/tmp/${file%.html}-staging"
+  mkdir -p "$staging"
+  cp "$src" "$staging/resume.html"
+  CHROME="${CHROME:-/Applications/Google Chrome.app/Contents/MacOS/Google Chrome}"
+  PROFILE="$(mktemp -d)"
+  trap 'rm -rf "$PROFILE" "$staging"' EXIT
+  "$CHROME" --headless=new --disable-gpu --no-pdf-header-footer --hide-scrollbars \
+    --user-data-dir="$PROFILE" --print-to-pdf="$pdf" --print-to-pdf-no-header \
+    "file://$staging/resume.html" >/dev/null 2>&1 &
+  pid=$!
+  for _ in $(seq 1 300); do
+    [[ -s "$pdf" ]] && break
+    sleep 0.1
+  done
+  kill -TERM "$pid" 2>/dev/null || true
+  if [[ ! -s "$pdf" ]]; then
+    echo "PDF not produced" >&2
+    exit 1
+  fi
+  echo "opening $pdf"
+  open "$pdf"
+fi
