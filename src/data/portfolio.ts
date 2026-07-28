@@ -46,15 +46,6 @@ export const projects: Project[] = [
     category: "featured",
   },
   {
-    title: "litellmctl",
-    description:
-      "CLI for managing a personal LiteLLM proxy — OAuth logins for major providers, a Bun-based web gateway with dashboard and API keys, local inference (Ollama, whisper), SearXNG search, and one-command install on macOS and Linux.",
-    tags: ["TypeScript", "Python", "CLI", "LiteLLM"],
-    url: "https://github.com/0xxmemo/litellmctl",
-    logo: "/logos/litellmctl.png",
-    category: "featured",
-  },
-  {
     title: "Breadcrumb.cash",
     description:
       "Decentralized InfoFi platform on Base with 2,600+ followers (10× personal account). On-chain intelligence, analytics, and a Reply Agent for X/Twitter automation.",

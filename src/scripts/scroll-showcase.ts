@@ -1,10 +1,30 @@
 import { animate } from "animejs";
 import { showcaseSections } from "../data/portfolio";
-import { runSectionEnterAnimation, type SectionId } from "./section-animations";
+import { runSectionEnterAnimation } from "./section-animations";
+import { type SectionId, sectionIdByIndex } from "./deep-link";
 
-export function initScrollShowcase(): void {
+interface ScrollShowcaseOptions {
+  initialSection?: SectionId;
+  onActiveSectionChange?: (sectionId: SectionId) => void;
+}
+
+interface SetActiveSectionOptions {
+  notify?: boolean;
+}
+
+export interface ScrollShowcaseController {
+  setActiveSection: (sectionId: SectionId, options?: SetActiveSectionOptions) => void;
+  getActiveSection: () => SectionId;
+}
+
+export function initScrollShowcase({ initialSection, onActiveSectionChange }: ScrollShowcaseOptions = {}): ScrollShowcaseController {
   const container = document.getElementById("showcase-scroll-container");
-  if (!container) return;
+  if (!container) {
+    return {
+      setActiveSection: () => {},
+      getActiveSection: () => showcaseSections[0].id,
+    };
+  }
 
   const panels = showcaseSections.map((s) => ({
     ...s,
@@ -13,7 +33,9 @@ export function initScrollShowcase(): void {
 
   const gradEl = document.getElementById("showcase-gradient");
 
-  let prevIndex = 0;
+  const initialIndex = typeof initialSection === "string" ? showcaseSections.findIndex((s) => s.id === initialSection) : 0;
+
+  let prevIndex = Math.max(0, Math.min(initialIndex, showcaseSections.length - 1));
 
   const updateNavDots = (activeIndex: number) => {
     document.querySelectorAll<HTMLElement>("[data-showcase-nav]").forEach((dot, i) => {
@@ -28,8 +50,11 @@ export function initScrollShowcase(): void {
     });
   };
 
-  const applyActiveIndex = (index: number) => {
+  const applyActiveIndex = (index: number, notify = true) => {
     const clamped = Math.max(0, Math.min(index, showcaseSections.length - 1));
+    const section = showcaseSections[clamped]?.id;
+    if (!section) return;
+
     const color = showcaseSections[clamped]?.color ?? "#10b981";
     if (gradEl) {
       gradEl.style.background = `radial-gradient(ellipse at 70% 50%, ${color}15 0%, ${color}08 40%, transparent 70%)`;
@@ -49,10 +74,14 @@ export function initScrollShowcase(): void {
         ease: "outExpo",
       });
       p.el.style.pointerEvents = isActive ? "auto" : "none";
-      if (isActive) runSectionEnterAnimation(p.id as SectionId);
+      if (isActive) runSectionEnterAnimation(section);
     });
 
     prevIndex = clamped;
+
+    if (notify && onActiveSectionChange) {
+      onActiveSectionChange(section);
+    }
   };
 
   const handleScroll = () => {
@@ -71,18 +100,30 @@ export function initScrollShowcase(): void {
     }
   };
 
+  const setActiveSection = (sectionId: SectionId, options: SetActiveSectionOptions = {}) => {
+    const targetIndex = showcaseSections.findIndex((s) => s.id === sectionId);
+    const index = Math.max(0, Math.min(targetIndex, showcaseSections.length - 1));
+    const shouldNotify = options.notify ?? true;
+    applyActiveIndex(index, shouldNotify);
+  };
+
   window.addEventListener("scroll", handleScroll, { passive: true });
 
-  // Initial: first panel visible, first section animation
   panels.forEach((p, i) => {
     if (p.el) {
-      p.el.style.opacity = i === 0 ? "1" : "0";
-      p.el.style.pointerEvents = i === 0 ? "auto" : "none";
+      p.el.style.opacity = i === prevIndex ? "1" : "0";
+      p.el.style.pointerEvents = i === prevIndex ? "auto" : "none";
     }
   });
-  updateNavDots(0);
-  prevIndex = 0;
-  runSectionEnterAnimation(showcaseSections[0].id as SectionId);
+
+  const initialSectionId = sectionIdByIndex(prevIndex);
+  updateNavDots(prevIndex);
+  runSectionEnterAnimation(initialSectionId);
 
   handleScroll();
+
+  return {
+    setActiveSection,
+    getActiveSection: () => sectionIdByIndex(prevIndex),
+  };
 }
