@@ -59,6 +59,7 @@ const n = showcaseSections.length;
             style={{
               opacity: i === 0 ? 1 : 0,
               pointerEvents: i === 0 ? "auto" : "none",
+              visibility: i === 0 ? "visible" : "hidden",
             }}
           >
             {s.id === "about" && <AboutSection />}

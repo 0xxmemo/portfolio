@@ -20,6 +20,12 @@
   backface-visibility: visible;
   overflow: visible;
 }
+/* Folded slides stay in the DOM and overlap the active card in 3D, so their
+   links would swallow clicks meant for the card on top. Only the active
+   slide's content is interactive; the slide itself still accepts drags. */
+.swiper-cards-stack .swiper-slide:not(.swiper-slide-active) > * {
+  pointer-events: none;
+}
 /* Decelerating curve so cards settle into their snap point instead of
    stopping abruptly. Duration is still driven by Swiper's `speed`. */
 .swiper-cards-stack .swiper-slide,

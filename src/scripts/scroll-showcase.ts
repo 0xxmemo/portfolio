@@ -74,6 +74,11 @@ export function initScrollShowcase({ initialSection, onActiveSectionChange }: Sc
         ease: "outExpo",
       });
       p.el.style.pointerEvents = isActive ? "auto" : "none";
+      // Panels are stacked on top of each other, and `pointer-events: none` is
+      // re-enabled by any descendant that sets it to `auto` (the projects tab
+      // holder does). `visibility` can't be overridden that way, so it is what
+      // actually stops a hidden panel from swallowing clicks.
+      p.el.style.visibility = isActive ? "visible" : "hidden";
       if (isActive) runSectionEnterAnimation(section);
     });
 
@@ -113,6 +118,7 @@ export function initScrollShowcase({ initialSection, onActiveSectionChange }: Sc
     if (p.el) {
       p.el.style.opacity = i === prevIndex ? "1" : "0";
       p.el.style.pointerEvents = i === prevIndex ? "auto" : "none";
+      p.el.style.visibility = i === prevIndex ? "visible" : "hidden";
     }
   });
 

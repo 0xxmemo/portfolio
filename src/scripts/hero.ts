@@ -9,7 +9,7 @@ import {
 
 const TYPEWRITER_WORDS = [
   "Software Architect & Engineer",
-  "Senior Fullstack Lead @ Floors",
+  "CTO & Co-Founder @ OpenLLM",
   "At the Intersection of Crypto & AI",
   "Shipping Agents, Proxies & Onchain Systems",
   "Builder from 🇹🇷 based in 🇵🇪",

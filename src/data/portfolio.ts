@@ -28,15 +28,6 @@ export const projectCategories: { id: ProjectCategory; label: string }[] = [
 
 export const projects: Project[] = [
   {
-    title: "OpenLLM",
-    description:
-      "Format-agnostic LLM hub. Bring your own provider keys and route across Anthropic, OpenAI, Codex, Kimi, DashScope, and AWS Bedrock — with unified observability and cost tracking.",
-    tags: ["TypeScript", "LLM", "Gateway", "Observability"],
-    url: "https://openllm.sh",
-    logo: "/logos/openllm.svg",
-    category: "featured",
-  },
-  {
     title: "Controlroom",
     description:
       "Modular operations dashboard for Inverter Network. Manage decentralized workflows, deploy modules, and monitor protocol state — all from one responsive interface.",
@@ -196,14 +187,14 @@ export interface Experience {
 
 export const experiences: Experience[] = [
   {
-    title: "Fullstack Lead",
-    company: "Floor Markets",
-    url: "https://www.floors.finance/",
-    period: "2024 — Present",
+    title: "CTO & Co-Founder",
+    company: "OpenLLM",
+    url: "https://openllm.sh",
+    period: "2025 — Present",
     description:
-      "Building a leveraged DeFi protocol where users amplify token price & yield up to 20× — with built-in floor protection. No liquidations, no interest. Architecting the Floors SDK, frontend, and smart contract integrations.",
-    tags: ["TypeScript", "Next.js", "Viem", "DeFi", "SDK"],
-    logo: "/logos/floors.svg",
+      "Format-agnostic LLM hub. Bring your own provider keys and route across Anthropic, OpenAI, Codex, Kimi, DashScope, and AWS Bedrock — with unified observability and cost tracking.",
+    tags: ["TypeScript", "LLM", "Gateway", "Observability"],
+    logo: "/logos/openllm.svg",
   },
   {
     title: "Fullstack Lead",
