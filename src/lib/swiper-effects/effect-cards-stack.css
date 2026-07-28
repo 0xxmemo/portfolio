@@ -20,6 +20,14 @@
   backface-visibility: visible;
   overflow: visible;
 }
+/* Slides fold past 90deg, so their back face shows content mirrored.
+   Counter-flip just the content; the slide transform is left alone. */
+.swiper-cards-stack .swiper-slide.cards-stack-mirrored > *:not(.swiper-slide-shadow) {
+  transform: rotateY(180deg);
+}
+.swiper-cards-stack.swiper-vertical .swiper-slide.cards-stack-mirrored > *:not(.swiper-slide-shadow) {
+  transform: rotateX(180deg);
+}
 .swiper-cards-stack .swiper-slide-shadow {
   background-color: rgba(0, 0, 0, 0.25);
   border-radius: inherit;

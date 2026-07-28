@@ -103,6 +103,13 @@ export default function EffectCardsStack({ swiper, on, extendParams }) {
         -Math.abs(Math.round(slideProgress)) + slides.length;
       const targetEl = effectTarget(params, slideEl);
       targetEl.style.transform = transform;
+
+      // Past 90deg of fold we see the slide's back face and its content reads
+      // mirrored. Flag it so CSS can counter-flip the content only.
+      slideEl.classList.toggle(
+        'cards-stack-mirrored',
+        Math.abs(rotateX) > 90 || Math.abs(rotateY) > 90,
+      );
     }
   };
 
