@@ -41,20 +41,18 @@ export const projects: Project[] = [
     description:
       "Decentralized InfoFi platform on Base with 2,600+ followers (10× personal account). On-chain intelligence, analytics, and a Reply Agent for X/Twitter automation.",
     tags: ["InfoFi", "Base", "Analytics", "AI Agent"],
-    url: "https://breadcrumb.cash",
+    url: "https://x.com/breadcrumbcash",
     logo: "/logos/breadcrumb.ico",
     category: "featured",
-    linkDisabled: true,
   },
   {
     title: "Levr",
     description:
       "Customizable crypto launchpad on Base & BNB Chain. Staking, DAO treasury, liquidity pools, airdrop modules. Base Builder Grant winner. Sherlock-audited.",
     tags: ["Base", "BNB", "Launchpad", "Solidity"],
-    url: "https://levr.world",
+    url: "https://x.com/levrworld",
     logo: "/logos/levr.ico",
     category: "featured",
-    linkDisabled: true,
   },
   {
     title: "Inverter SDK",
