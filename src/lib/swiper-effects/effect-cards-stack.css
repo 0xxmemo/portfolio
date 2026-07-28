@@ -20,6 +20,12 @@
   backface-visibility: visible;
   overflow: visible;
 }
+/* Decelerating curve so cards settle into their snap point instead of
+   stopping abruptly. Duration is still driven by Swiper's `speed`. */
+.swiper-cards-stack .swiper-slide,
+.swiper-cards-stack .swiper-slide .swiper-slide-shadow {
+  transition-timing-function: cubic-bezier(0.22, 0.61, 0.36, 1);
+}
 /* Slides fold past 90deg, so their back face shows content mirrored.
    Counter-flip just the content; the slide transform is left alone. */
 .swiper-cards-stack .swiper-slide.cards-stack-mirrored > *:not(.swiper-slide-shadow) {

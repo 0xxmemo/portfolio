@@ -6,6 +6,24 @@ import { type ProjectCategory } from "./deep-link";
 
 const SWIPER_CATS: readonly ProjectCategory[] = ["featured", "sdk", "tools"];
 
+/** Shared feel/motion tuning for both cards-stack swipers. */
+const MOTION_OPTIONS = {
+  speed: 550,
+  grabCursor: true,
+  // Track the finger 1:1 while dragging, then settle on release.
+  followFinger: true,
+  // Smaller threshold so a deliberate drag engages without feeling sticky.
+  threshold: 3,
+  // Softer rubber-banding at the first/last card.
+  resistance: true,
+  resistanceRatio: 0.65,
+  // A short flick past ~20% of the card still advances, so snapping
+  // resolves in the direction of intent instead of springing back.
+  longSwipesRatio: 0.2,
+  longSwipesMs: 200,
+  shortSwipes: true,
+} as const;
+
 interface SwiperInitOptions {
   getInitialExperienceCard?: () => number;
   getInitialProjectCard?: (cat: ProjectCategory) => number;
@@ -31,7 +49,7 @@ export function initExperienceSwiper({ getInitialExperienceCard = () => 1, onSli
   const swiper = new Swiper(el, {
     modules: [EffectCardsStack, Pagination],
     effect: "cards-stack",
-    grabCursor: true,
+    ...MOTION_OPTIONS,
     pagination: {
       clickable: true,
       el: el.querySelector(".swiper-pagination"),
@@ -75,7 +93,7 @@ export function initProjectsSwipers({ getInitialProjectCard = () => 1, onSlideCh
     const swiper = new Swiper(el, {
       modules: [EffectCardsStack, Pagination],
       effect: "cards-stack",
-      grabCursor: true,
+      ...MOTION_OPTIONS,
       pagination: {
         clickable: true,
         el: el.querySelector(".swiper-pagination"),
