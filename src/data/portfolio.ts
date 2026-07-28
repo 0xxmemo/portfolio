@@ -28,12 +28,12 @@ export const projectCategories: { id: ProjectCategory; label: string }[] = [
 
 export const projects: Project[] = [
   {
-    title: "Floor Markets",
+    title: "OpenLLM",
     description:
-      "Leveraged DeFi protocol — amplify token price & yield up to 20× with floor protection. No liquidations, no interest. Redeem at market price anytime.",
-    tags: ["DeFi", "Leverage", "TypeScript", "Viem"],
-    url: "https://www.floors.finance/",
-    logo: "/logos/floors.svg",
+      "Format-agnostic LLM hub. Bring your own provider keys and route across Anthropic, OpenAI, Codex, Kimi, DashScope, and AWS Bedrock — with unified observability and cost tracking.",
+    tags: ["TypeScript", "LLM", "Gateway", "Observability"],
+    url: "https://openllm.sh",
+    logo: "/logos/openllm.svg",
     category: "featured",
   },
   {
