@@ -15,8 +15,8 @@ export const DEFAULT_SECTION_ID: SectionId = showcaseSections[0].id;
 export const DEFAULT_TAB_ID: ProjectCategory = projectCategories[0].id;
 export const DEFAULT_CARD_INDEX = 1;
 
-const sectionIds = new Set(showcaseSections.map((s) => s.id));
-const tabIds = new Set(projectCategories.map((c) => c.id));
+const sectionIds = new Set<string>(showcaseSections.map((s) => s.id));
+const tabIds = new Set<string>(projectCategories.map((c) => c.id));
 const swiperSections = new Set<SectionId>(["experience", "projects"]);
 
 function isSection(value: string | null): value is SectionId {

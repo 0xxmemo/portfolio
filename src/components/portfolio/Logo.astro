@@ -1,0 +1,15 @@
+---
+interface Props {
+  src: string;
+  size?: "small" | "medium" | "large";
+  loading?: "eager" | "lazy";
+}
+
+const { src, size = "medium", loading = "lazy" } = Astro.props;
+// These assets are white marks; keep their original colors on a dark tile.
+const whiteMarks = new Set(["/logos/openllm.svg", "/logos/floors.svg", "/logos/inverter.ico"]);
+---
+
+<span class:list={["logo-tile", `logo-${size}`]} data-logo-surface={whiteMarks.has(src) ? "dark" : "light"}>
+  <img src={src} alt="" width="48" height="48" loading={loading} />
+</span>

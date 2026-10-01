@@ -1,21 +1,25 @@
 ---
 import '../index.css';
-import 'swiper/css';
-import 'swiper/css/pagination';
-import '../lib/swiper-effects/effect-cards-stack.css';
+import { getImage } from 'astro:assets';
+import portrait from '../assets/portrait.jpeg';
+import { profile } from '../data/portfolio';
+
+const socialPortrait = await getImage({ src: portrait, width: 1200, format: 'jpeg' });
+const portraitUrl = new URL(socialPortrait.src, 'https://0xmemo.com').href;
 
 const jsonLd = {
   '@context': 'https://schema.org',
   '@type': 'Person',
-  name: 'Mehmet Guleryuz',
-  alternateName: '0xMemo',
+  name: profile.name,
+  alternateName: profile.alias,
+  email: profile.email,
   url: 'https://0xmemo.com',
-  image: 'https://0xmemo.com/profile.jpg',
+  image: portraitUrl,
   jobTitle: 'CTO & Co-Founder',
   worksFor: {
     '@type': 'Organization',
     name: 'OpenLLM',
-    url: 'https://openllm.sh',
+    url: 'https://www.openllm.sh',
   },
   alumniOf: {
     '@type': 'EducationalOrganization',
@@ -54,7 +58,15 @@ const jsonLd = {
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <link rel="icon" type="image/jpeg" href="/favicon.jpg" />
+    <script is:inline>
+      try {
+        const preference = localStorage.getItem('portfolio-theme');
+        if (preference === 'light' || preference === 'dark') document.documentElement.dataset.theme = preference;
+      } catch {
+        // CSS follows the system theme when storage is unavailable.
+      }
+    </script>
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
     <title>0xMemo — Software Architect & Blockchain Builder</title>
@@ -63,7 +75,7 @@ const jsonLd = {
       name="description"
       content="CTO & Co-Founder at OpenLLM. Building decentralized systems, SDKs, and developer tools across Ethereum, Base, and beyond."
     />
-    <meta name="author" content="Mehmet Guleryuz" />
+    <meta name="author" content={profile.name} />
     <meta
       name="keywords"
       content="blockchain developer, web3, ethereum, solidity, typescript, react, software architect, fullstack developer, openllm, inverter network, breadcrumb, 0xmemo"
@@ -76,7 +88,7 @@ const jsonLd = {
       property="og:description"
       content="CTO & Co-Founder at OpenLLM. Building decentralized systems, SDKs, and developer tools across Ethereum, Base, and beyond."
     />
-    <meta property="og:image" content="https://0xmemo.com/profile.jpg" />
+    <meta property="og:image" content={portraitUrl} />
 
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:url" content="https://0xmemo.com/" />
@@ -87,7 +99,7 @@ const jsonLd = {
       name="twitter:description"
       content="CTO & Co-Founder at OpenLLM. Building decentralized systems, SDKs, and developer tools across Ethereum, Base, and beyond."
     />
-    <meta name="twitter:image" content="https://0xmemo.com/profile.jpg" />
+    <meta name="twitter:image" content={portraitUrl} />
 
     <script type="application/ld+json" set:html={JSON.stringify(jsonLd)} />
   </head>

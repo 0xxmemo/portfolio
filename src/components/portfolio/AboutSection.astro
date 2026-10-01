@@ -1,72 +1,29 @@
 ---
 import { iconMapPin } from "../../data/social-icons";
+import { EXPERIENCE_START, getExperienceDuration } from "../../lib/experience-time";
+
+const duration = getExperienceDuration();
+const units = ["years", "days", "hours", "minutes", "seconds"] as const;
 ---
 
-<section id="section-about" class="min-h-[60vh] flex items-center" style="opacity: 0">
-  <div class="w-full">
-    <h2
-      class="section-header text-[10px] sm:text-xs font-mono mb-8 sm:mb-10 md:mb-12 tracking-[0.2em] sm:tracking-[0.3em] uppercase"
-      style="color: #10b981; opacity: 0"
-    >
-      // About
-    </h2>
-
-    <div class="about-card mt-8" style="opacity: 0">
-      <div
-        data-glow-card
-        class="relative overflow-hidden group transition-all duration-300 p-6 sm:p-10 bg-white/[0.02] border-white/[0.08] rounded-2xl"
-      >
-        <div
-          class="pointer-events-none absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500"
-          style="background: radial-gradient(400px circle at var(--gx, 50%) var(--gy, 50%), rgba(16,185,129,0.08), transparent 40%)"
-        />
-        <div class="relative z-10 flex flex-col sm:flex-row gap-8 items-start">
-          <div class="shrink-0 mx-auto sm:mx-0">
-            <div class="relative w-32 h-32 sm:w-40 sm:h-40">
-              <div class="absolute inset-0 rounded-full bg-gradient-to-br from-accent/30 to-accent-dark/30 blur-xl"></div>
-              <img
-                src="/profile.jpg"
-                alt="0xMemo - Mehmet Guleryuz"
-                class="about-profile-img relative w-full h-full rounded-full object-cover border-2 border-accent/30"
-                style="opacity: 0"
-              />
-            </div>
-          </div>
-
-          <div class="space-y-6 flex-1">
-            <div class="flex items-center gap-2 text-white/40 text-sm">
-              <span set:html={iconMapPin} />
-              <span>Cusco, Peru · Turkish origin</span>
-            </div>
-
-            <p class="text-base sm:text-lg md:text-xl text-white/90 leading-relaxed">
-              Senior Software Engineer & Architect with 7 years of experience building infrastructure for decentralized systems.
-              CTO & Co-Founder of{" "}
-              <a href="https://openllm.sh" target="_blank" rel="noopener noreferrer" class="text-accent hover:underline">
-                OpenLLM
-              </a>
-              , a format-agnostic LLM hub — bring your own provider keys and route across any model with unified observability and cost
-              tracking.
-            </p>
-
-            <p class="text-sm sm:text-base text-white/60 leading-relaxed">
-              I build modular systems — decentralized architectures, trustless by default, and decentralization carried into web2 rather
-              than left at the chain boundary. Efficiency and quality over everything else, earned through incremental improvements
-              instead of rewrites.
-            </p>
-
-            <div class="flex flex-wrap gap-3 pt-4">
-              {
-                ["Solidity", "TypeScript", "Go", "Python", "Bun", "React"].map((tag) => (
-                  <span class="about-tag px-3 py-1.5 text-sm rounded-full bg-white/5 border border-white/10 text-white/50" style="opacity: 0">
-                    {tag}
-                  </span>
-                ))
-              }
-            </div>
-          </div>
-        </div>
+<section id="about" class="about-section" aria-labelledby="about-title">
+  <div class="container about-grid">
+    <div class="about-heading">
+      <p class="eyebrow">02 / A little about me</p>
+      <h2 id="about-title">Systems thinker.<br /><span class="serif-accent">Curious human.</span></h2>
+      <p class="location"><span aria-hidden="true" set:html={iconMapPin} /> Cusco, Peru · Turkish origin</p>
+      <div class="experience-counter" data-experience-counter role="timer" aria-live="off" aria-label="Software engineering experience since January 1, 2019, UTC">
+        <p class="counter-caption">Building since <time datetime={EXPERIENCE_START}>01 Jan 2019</time><span>UTC · Still counting</span></p>
+        <dl class="counter-units">
+          {units.map((unit) => <div><dt>{unit}</dt><dd data-experience-unit={unit}>{String(duration[unit]).padStart(unit === "years" || unit === "days" ? 1 : 2, "0")}</dd></div>)}
+        </dl>
       </div>
+    </div>
+    <div class="about-copy">
+      <p class="large-copy">I’m a senior software engineer and architect, turning complicated problems into useful, dependable software. And counting.</p>
+      <p>Today, I’m CTO & Co-Founder of <a href="https://www.openllm.sh" target="_blank" rel="noopener noreferrer">OpenLLM</a>, a format-agnostic LLM hub. Bring your own provider keys, route across models, and understand what’s happening with unified observability and cost tracking.</p>
+      <p>I build modular systems — decentralized architectures, trustless by default, with decentralization carried into web2 rather than left at the chain boundary. I care about efficiency and quality, earned through incremental improvements instead of rewrites.</p>
+      <div class="principles"><span>Modular by design</span><span>Trustless by default</span><span>Better, one iteration at a time</span></div>
     </div>
   </div>
 </section>

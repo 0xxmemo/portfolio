@@ -1,19 +1,17 @@
 ---
 import Layout from "../layouts/Layout.astro";
+import Header from "../components/portfolio/Header.astro";
 import Hero from "../components/portfolio/Hero.astro";
 import ScrollShowcase from "../components/portfolio/ScrollShowcase.astro";
 ---
 
 <Layout>
-  <div class="app-root">
-    <canvas data-space-canvas class="pointer-events-none fixed inset-0 z-[1]"></canvas>
-    <main class="relative z-10">
-      <Hero />
-      <article>
-        <ScrollShowcase />
-      </article>
-    </main>
-  </div>
+  <a class="skip-link" href="#main">Skip to content</a>
+  <Header />
+  <main id="main">
+    <Hero />
+    <ScrollShowcase />
+  </main>
 </Layout>
 
 <script>

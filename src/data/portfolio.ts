@@ -1,3 +1,10 @@
+export const profile = {
+  name: "Memo",
+  alias: "0xMemo",
+  email: "memo@openllm.sh",
+  bookingUrl: "https://calendar.app.google/ahswaBhNE1Mnu8vm8",
+} as const;
+
 export type ProjectCategory = "featured" | "sdk" | "tools";
 
 export interface Project {
@@ -27,6 +34,15 @@ export const projectCategories: { id: ProjectCategory; label: string }[] = [
 ];
 
 export const projects: Project[] = [
+  {
+    title: "OpenLLM",
+    description:
+      "A format-agnostic LLM hub. Bring your own provider keys, route across models, and understand every request with unified observability and cost tracking.",
+    tags: ["TypeScript", "LLM", "Gateway", "Observability"],
+    url: "https://www.openllm.sh",
+    logo: "/logos/openllm.svg",
+    category: "featured",
+  },
   {
     title: "Controlroom",
     description:
@@ -187,7 +203,7 @@ export const experiences: Experience[] = [
   {
     title: "CTO & Co-Founder",
     company: "OpenLLM",
-    url: "https://openllm.sh",
+    url: "https://www.openllm.sh",
     period: "2025 — Present",
     description:
       "Format-agnostic LLM hub. Bring your own provider keys and route across Anthropic, OpenAI, Codex, Kimi, DashScope, and AWS Bedrock — with unified observability and cost tracking.",

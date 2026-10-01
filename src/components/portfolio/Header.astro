@@ -1,0 +1,34 @@
+---
+const links = [
+  { label: "Work", href: "#projects", number: "01" },
+  { label: "About", href: "#about", number: "02" },
+  { label: "Experience", href: "#experience", number: "03" },
+];
+---
+
+<!-- Floating shell adapted from Tailark header-3; direction-aware reveal is local. -->
+<header class="site-header" data-floating-header>
+  <div class="header-inner">
+    <a class="wordmark" href="#home" aria-label="0xMemo home">0xMemo<span aria-hidden="true">.</span></a>
+    <nav class="desktop-nav" aria-label="Main navigation">
+      {links.map((link) => <a href={link.href} data-nav-section={link.href.slice(1)}>{link.label}</a>)}
+    </nav>
+    <div class="header-actions">
+      <label class="theme-control" hidden>
+        <svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="12" r="8" /><path d="M12 4a8 8 0 0 1 0 16Z" fill="currentColor" /></svg>
+        <span class="sr-only">Color theme</span>
+        <select data-theme-selector aria-label="Color theme"><option value="system">System</option><option value="light">Light</option><option value="dark">Dark</option></select>
+      </label>
+      <a class="header-contact" href="#contact">Let’s talk <span aria-hidden="true">↗</span></a>
+      <details class="mobile-menu">
+        <summary aria-label="Navigation menu"><span class="menu-label">Menu</span><span class="menu-lines" aria-hidden="true"><i></i><i></i></span></summary>
+        <nav aria-label="Mobile navigation">
+          <p class="micro-label">Explore / 0xMemo</p>
+          {links.map((link) => <a href={link.href}><span class="micro-label">{link.number}</span><span>{link.label}</span><span aria-hidden="true">↗</span></a>)}
+          <a href="#contact"><span class="micro-label">06</span><span>Let’s talk</span><span aria-hidden="true">↗</span></a>
+          <p class="mobile-menu-note">Thoughtful systems. A human touch.</p>
+        </nav>
+      </details>
+    </div>
+  </div>
+</header>

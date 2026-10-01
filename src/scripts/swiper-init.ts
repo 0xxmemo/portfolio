@@ -52,7 +52,7 @@ export function initExperienceSwiper({ getInitialExperienceCard = () => 1, onSli
     ...MOTION_OPTIONS,
     pagination: {
       clickable: true,
-      el: el.querySelector(".swiper-pagination"),
+      el: el.querySelector<HTMLElement>(".swiper-pagination"),
     },
     cardsStackEffect: { slideShadows: true },
     initialSlide: initialCard - 1,
@@ -96,7 +96,7 @@ export function initProjectsSwipers({ getInitialProjectCard = () => 1, onSlideCh
       ...MOTION_OPTIONS,
       pagination: {
         clickable: true,
-        el: el.querySelector(".swiper-pagination"),
+        el: el.querySelector<HTMLElement>(".swiper-pagination"),
       },
       cardsStackEffect: { slideShadows: true },
       initialSlide: initialCard - 1,
